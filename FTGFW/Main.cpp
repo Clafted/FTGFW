@@ -3,13 +3,14 @@
 #include <iostream>
 
 #include "Shader.hpp"
+#include "Texture.hpp"
 #include "VBO.hpp"
 #include "VAO.hpp"
 
 void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
 
-int main()
-{
+int main() {
+
 	// Initial GLFW configuration
 	if (glfwInit() == GLFW_FALSE)
 	{
@@ -41,9 +42,13 @@ int main()
 	}
 
 	float vertices[] = {
-		-0.5f, -0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
-		0.0f,  0.5f, 0.0f
+		//	  Position			
+		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 
+		 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
+		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
+		 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+		 0.5f,  0.5f, 0.0f, 1.0f, 1.0f
 	};
 	
 	// Use Shaders
@@ -52,6 +57,7 @@ int main()
 	VAO triangleVAO;
 	triangleVAO.bindObject();
 	VBO triangleVBO(vertices, sizeof(vertices), GL_STATIC_DRAW);
+	Texture texture("./Textures/Brick_Texture.png");
 
 	glUseProgram(shader.ID);
 	// Render Loop
@@ -60,8 +66,8 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glUniform1f(glGetUniformLocation(shader.ID, "time"), glfwGetTime());
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glUniform1f(glGetUniformLocation(shader.ID, "time"), (float) glfwGetTime());
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
