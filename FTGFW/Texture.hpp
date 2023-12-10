@@ -6,11 +6,17 @@
 #include "stb_image.h"
 #include <string>
 
+/*
+ * The Texture class simplifies the use of OpenGL Texture objects.
+ * 
+ * @author Noah Perez
+ */
 class Texture : public OpenGLObject {
 
 public:
 	Texture(const char* path) {
-		data = stbi_load(path, &width, &height, &nrChannels, 0);											// Generate image data
+		// Generate image data
+		data = stbi_load(path, &width, &height, &nrChannels, 0);
 		if (data) {
 			glGenTextures(1, &ID);
 			bindObject();

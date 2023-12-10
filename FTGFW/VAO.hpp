@@ -4,14 +4,21 @@
 
 #include "OpenGLObject.hpp"
 
+/*
+ * The VAO class simplifies the use of Open GL Vertex Array  Objects
+ * 
+ * @authoer Noah Perez
+ */
 class VAO : public OpenGLObject
 {
 public:
-	VAO() { glGenVertexArrays(1, &ID); }
+	VAO() { 
+		glGenVertexArrays(1, &ID); 
+	}
 	~VAO() {}
 
-	inline void bindObject() { glBindVertexArray(ID); }
-	inline void unbindObject() { glBindVertexArray(0); }
+	inline void bindObject() override { glBindVertexArray(ID); }
+	inline void unbindObject() override { glBindVertexArray(0); }
 };
 
 #endif

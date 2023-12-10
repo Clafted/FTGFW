@@ -8,6 +8,12 @@
 #include <sstream>
 #include <iostream>
 
+/*
+ * The Shader class simplifies the implementation of shaders into
+ * the OpenGL project.
+ * 
+ * This code was taken from LearnOpenGL, with few or no modifications.
+ */
 class Shader
 {
 public:
