@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\OpenGL Files\GLAD\include;C:\OpenGL Files\GLFW Build Files\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\OpenGL Files\GLFW Build Files\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\noahm\source\repos\Playground\FTGFW\third_party\glm;C:\Users\noahm\source\repos\Playground\FTGFW\third_party\include;C:\Users\noahm\source\repos\Playground\FTGFW\third_party\GLAD\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\noahm\source\repos\Playground\FTGFW\third_party\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -132,15 +132,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\OpenGL Files\GLAD\src\glad.c" />
+    <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="OpenGLObject.hpp" />
+    <ClCompile Include="stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.hpp" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Texture.hpp" />
+    <ClInclude Include="VAO.hpp" />
+    <ClInclude Include="VBO.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragment.frag" />
     <None Include="vertex.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\Brick_Texture.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
