@@ -13,7 +13,8 @@ class VAO : public OpenGLObject
 {
 public:
 	VAO() { 
-		glGenVertexArrays(1, &ID); 
+		glGenVertexArrays(1, &ID);
+		bindObject();
 	}
 	~VAO() {}
 

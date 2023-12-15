@@ -12,8 +12,8 @@
 class VBO : public OpenGLObject
 {
 public:
-	VBO(const void* vertices, GLsizeiptr size, GLenum usage)
-	{
+	VBO() {}
+	VBO(const void* vertices, GLsizeiptr size, GLenum usage) {
 		glGenBuffers(1, &ID);
 		bindObject();
 		setVertices(vertices, size, usage);
@@ -27,8 +27,10 @@ public:
 	inline void bindObject() { 
 		glBindBuffer(GL_ARRAY_BUFFER, ID);
 	}
-	inline void unbindObject() { }
-
+	inline void unbindObject() {}
+	inline int getNumVertices() {
+		return numVertices;
+	}
 	/*
 	 * Chage the vertices stored in the Vertex Buffer Objects.
 	 * 
@@ -41,7 +43,11 @@ public:
 	inline void setVertices(const void* vertices, GLsizeiptr size, GLenum usage) {
 		bindObject();
 		glBufferData(GL_ARRAY_BUFFER, size, vertices, usage);
+		numVertices = (int)size / (sizeof(float) * 5);
 	}
+
+private:
+	int numVertices = 0;
 };
 
 #endif
