@@ -6,6 +6,10 @@
 #include "VAO.hpp"
 #include "VBO.hpp"
 #include "Texture.hpp"
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <vector>
 
 /*
@@ -22,6 +26,8 @@ public:
 	VBO vbo;
 	VAO vao;
 	Texture texture;
+
+	glm::vec3 model;
 
 	/*
 	 * A Constructor for the Entity class
