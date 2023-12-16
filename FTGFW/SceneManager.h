@@ -6,13 +6,11 @@
 
 class SceneManager {
 public:
-	static Scene* startingScene;
 
 	inline ~SceneManager() {
 		delete instance;
 		delete currentScene;
 		delete temp;
-		delete startingScene;
 	}
 
 	inline static SceneManager* Instance() {
@@ -20,6 +18,10 @@ public:
 			instance = new SceneManager();
 		}
 		return instance;
+	}
+
+	inline static void setStartScene(Scene* scene) {
+		instance->currentScene = scene;
 	}
 
 	inline Scene& getCurrentScene() {
@@ -35,9 +37,7 @@ private:
 	static SceneManager* instance;
 	Scene* currentScene = nullptr, *temp = nullptr;
 
-	SceneManager() {
-		currentScene = startingScene;
-	}
+	SceneManager() {}
 };
 
 #endif

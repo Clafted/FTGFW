@@ -15,7 +15,7 @@
 class OpenGLObject {
 public:
 	// The ID storing the OpenGL object's address
-	unsigned int ID = NULL;
+	unsigned int ID;
 
 	// Binds an OpenGL object to its appropriate buffer
 	virtual void bindObject() = 0;

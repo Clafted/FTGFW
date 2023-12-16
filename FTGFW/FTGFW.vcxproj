@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\noahm\source\repos\Playground\FTGFW\third_party\glm;C:\Users\noahm\source\repos\Playground\FTGFW\third_party\include;C:\Users\noahm\source\repos\Playground\FTGFW\third_party\GLAD\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\noahm\source\repos\Playground\FTGFW\third_party\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>third_party\include;third_party\GLAD\include;third_party\glm</IncludePath>
+    <LibraryPath>third_party\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Demo\DefaultScene.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />

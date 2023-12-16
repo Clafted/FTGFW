@@ -1,3 +1,3 @@
 #include "SceneManager.h"
 
-Scene* SceneManager::startingScene = nullptr;
+SceneManager* SceneManager::instance = nullptr;
