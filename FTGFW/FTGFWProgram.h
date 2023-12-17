@@ -29,25 +29,41 @@ public:
 		glfwTerminate();
 	}
 
+	/**
+	 * Initializes GLFW and GLAD 
+	 */
 	int initProgram() {
 		if (glfwSetup() == -1) return -1;
 		if (gladSetup() == -1) return -1;
+		return 0;
+	}
 
+	/**
+	 * Begin the render loop with the given starting-scene.
+	 *
+	 * @param startingScene - a pointer to the Scene object to initialize with
+	 */
+	int initRenderLoop(Scene* startingScene) {
+		SceneManager::Instance()->setStartScene(startingScene);
 		// Use Shaders
 		shader = new Shader("vertex.vert", "fragment.frag");
 		glEnable(GL_DEPTH_TEST);
 		glUseProgram(shader->ID);
-		return 0;
-	}
-
-	int initRenderLoop(Scene* startingScene) {
+		glm::mat4 model;
 		while (!glfwWindowShouldClose(window)) {
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glUniform4fv(glGetUniformLocation(shader->ID, "view"), 1, glm::value_ptr(SceneManager::Instance()->getCurrentScene().camera.lookAt()));
-			for (Entity* entity : SceneManager::Instance()->getCurrentScene().entities) {
+			// Update the camera's (view) transformation matrix
+			glUniform4fv(glGetUniformLocation(shader->ID, "view"), 1, glm::value_ptr(SceneManager::Instance()->getCurrentScene()->camera.lookAt()));
+			// Render every Entity
+			// ------------------------------------------------------------------------------------------
+			for (Entity* entity : SceneManager::Instance()->getCurrentScene()->entities) {
+				// Create model transformation matrix (NOTE: Order of calculations is SCALE, ROTATE, then TRANSLATE)
+				model = glm::translate(glm::mat4(1.0f), entity->pos);
+				// Update Entity's model transformation matrix
+				glUniform4fv(glGetUniformLocation(shader->ID, "model"), 1, glm::value_ptr(model));
+				// Render Entity
 				entity->vao.bindObject();
-				glUniform4fv(glGetUniformLocation(shader->ID, "model"), 1, glm::value_ptr(entity->model));
 				glDrawArrays(GL_TRIANGLES, 0, entity->vbo.getNumVertices());
 			}
 			glfwSwapBuffers(window);

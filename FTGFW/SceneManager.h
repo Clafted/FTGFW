@@ -20,17 +20,17 @@ public:
 		return instance;
 	}
 
-	inline static void setStartScene(Scene* scene) {
+	inline void setStartScene(Scene* scene) {
 		instance->currentScene = scene;
 	}
 
-	inline Scene& getCurrentScene() {
+	inline Scene* getCurrentScene() {
 		temp = currentScene->update();
 		if (temp) {
 			delete currentScene;
 			currentScene = temp;
 		}
-		return *currentScene;
+		return currentScene;
 	}
 
 private:

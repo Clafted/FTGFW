@@ -52,8 +52,8 @@ public:
 		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 		};
 		entity = new Entity(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
-		entity->vao.bindObject();
 		entity->addTexture("./Textures/Brick_Texture.png");
+		entity->pos = glm::vec3(0.0f, 0.0f, -1.0f);
 		entities.push_back(entity);
 	}
 

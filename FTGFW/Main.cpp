@@ -2,7 +2,6 @@
 #include "Demo/DefaultScene.h"
 
 int main() {
-	
 	FTGFWProgram program;
 	if (program.initProgram() == -1) {
 		std::cout << "ERROR OCCURED INITIALIZING THE PROGRAM" << std::endl;

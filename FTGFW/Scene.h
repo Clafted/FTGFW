@@ -20,7 +20,7 @@ public:
 	}
 
 	inline Scene* update() {
-		return this;
+		return nullptr;
 	}
 };
 

@@ -27,7 +27,7 @@ public:
 	VAO vao;
 	Texture texture;
 
-	glm::vec3 model;
+	glm::vec3 pos =  glm::vec3(0.0f, 0.0f, -1.0f);
 
 	/*
 	 * A Constructor for the Entity class
@@ -47,9 +47,20 @@ public:
 	~Entity() {
 		glObjects.clear();
 	}
+
 	unsigned int vaoID() {
 		return glObjects[0]->ID;
 	}
+
+	/**
+	 * Add a texture to use with the entity.
+	 * 
+	 * Handles glObject binding so users do not
+	 * need to call bindObject() on the Entity's
+	 * OpenGLObjects.
+	 * 
+	 * @param path the path to the texture
+	 */
 	void addTexture(const char* path) {
 		glObjects[0]->bindObject();
 		glObjects[1]->bindObject();
