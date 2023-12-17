@@ -36,7 +36,7 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FTGFWProgram.h">
+    <ClCompile Include="FTGFWProgram.hpp">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
@@ -59,19 +59,19 @@
     <ClInclude Include="Texture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="Entity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="Camera.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
+    <ClInclude Include="Scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
+    <ClInclude Include="SceneManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Demo\DefaultScene.h">
+    <ClInclude Include="Demo\DefaultScene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

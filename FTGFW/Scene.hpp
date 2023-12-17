@@ -5,8 +5,8 @@
 #include <vector>
 #include <string>
 
-#include "Entity.h"
-#include "Camera.h"
+#include "Entity.hpp"
+#include "Camera.hpp"
 
 class Scene {
 public:
@@ -19,7 +19,12 @@ public:
 		entities.clear();
 	}
 
-	inline Scene* update() {
+	/**
+	 * Makes any changes to the Scene.
+	 * 
+	 * By default, nullptr is returned, and nothing else is changed.
+	 */
+	virtual inline Scene* update() {
 		return nullptr;
 	}
 };

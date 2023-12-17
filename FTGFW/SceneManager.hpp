@@ -2,7 +2,7 @@
 #ifndef SCENEMANAGER_H
 #define SCENEMANAGER_H
 
-#include "Scene.h"
+#include "Scene.hpp"
 
 class SceneManager {
 public:
@@ -23,14 +23,17 @@ public:
 	inline void setStartScene(Scene* scene) {
 		instance->currentScene = scene;
 	}
-
+	
 	inline Scene* getCurrentScene() {
+		return currentScene;
+	}
+
+	inline void update() {
 		temp = currentScene->update();
 		if (temp) {
 			delete currentScene;
 			currentScene = temp;
 		}
-		return currentScene;
 	}
 
 private:

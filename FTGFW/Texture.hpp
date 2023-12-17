@@ -34,6 +34,7 @@ public:
 
 	inline void createTexture(const char* path) {
 		unsigned char* data;
+		bindObject();
 		if (!std::ifstream(path).good()) {
 			std::cout << "Failed to load texture with path: " << path << std::endl;
 			data = stbi_load("./Textures/MissingTexture.png", &width, &height, &nrChannels, 0);

@@ -1,5 +1,5 @@
-#include "FTGFWProgram.h"
-#include "Demo/DefaultScene.h"
+#include "FTGFWProgram.hpp"
+#include "Demo/DefaultScene.hpp"
 
 int main() {
 	FTGFWProgram program;
@@ -11,5 +11,6 @@ int main() {
 		std::cout << "ERROR OCCURED IN THE RENDER LOOP" << std::endl;
 		return -1;
 	}
+	std::cout << "Ending program..." << std::flush;
 	return 0;
 }
