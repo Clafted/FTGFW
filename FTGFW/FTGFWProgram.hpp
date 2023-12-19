@@ -12,6 +12,7 @@
 #include "Scene.hpp"
 #include "SceneManager.hpp"
 #include "Shader.hpp"
+#include "InputManager.hpp"
 
 class FTGFWProgram {
 public:
@@ -38,6 +39,7 @@ public:
 		return 0;
 	}
 
+	
 	/**
 	 * Begin the render loop with the given starting-scene.
 	 *
@@ -49,6 +51,7 @@ public:
 		glm::mat4 view;
 
 		SceneManager::Instance()->setStartScene(startingScene);
+		InputManager* instance = InputManager::Instance();
 		
 		// Use Shaders
 		shader = new Shader("vertex.vert", "fragment.frag");
@@ -67,7 +70,6 @@ public:
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			currentScene = SceneManager::Instance()->getCurrentScene();
 			// Update the camera's (view) transformation matrix
-			currentScene->camera.pos = glm::vec3(0.0f, 0.0f, 0.5f * glfwGetTime());
 			view = currentScene->camera.lookAt();
 	
 			glUniformMatrix4fv(glGetUniformLocation(shader->ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
@@ -87,6 +89,7 @@ public:
 			
 			SceneManager::Instance()->update();
 			glfwSwapBuffers(window);
+			instance->checkInput(window);
 			glfwPollEvents();
 			frameCount++;
 		}

@@ -136,6 +136,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FTGFWProgram.hpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OpenGLObject.hpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -143,8 +144,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.hpp" />
+    <ClInclude Include="Component.hpp" />
+    <ClInclude Include="Controller.hpp" />
     <ClInclude Include="Demo\DefaultScene.hpp" />
     <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="KinematicComponent.hpp" />
+    <ClInclude Include="RenderComponent.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="Shader.hpp" />
