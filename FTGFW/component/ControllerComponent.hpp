@@ -29,7 +29,7 @@ public:
 	}
 
 	virtual void checkInputs(GLFWwindow* window) {
-		(target->*inputHandler)(window, mousePosX - prevMouseX, mousePosY - prevMouseY);
+		(target->*inputHandler)(window, -(mousePosX - prevMouseX), -(mousePosY - prevMouseY));
 	};
 };
 
