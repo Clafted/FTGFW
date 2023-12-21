@@ -9,10 +9,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Scene.hpp"
-#include "SceneManager.hpp"
-#include "Shader.hpp"
-#include "InputManager.hpp"
+#include "./scene/Scene.hpp"
+#include "./scene/SceneManager.hpp"
+#include "./shaders/Shader.hpp"
 
 class FTGFWProgram {
 public:
@@ -50,11 +49,11 @@ public:
 		glm::mat4 projection;
 		glm::mat4 view;
 
-		SceneManager::Instance()->setStartScene(startingScene);
-		InputManager* instance = InputManager::Instance();
+		SceneManager* sceneManager = SceneManager::Instance();
+		sceneManager->setStartScene(startingScene);
 		
 		// Use Shaders
-		shader = new Shader("vertex.vert", "fragment.frag");
+		shader = new Shader("./shaders/vertex.vert", "./shaders/fragment.frag");
 		glEnable(GL_DEPTH_TEST);
 		glUseProgram(shader->ID);
 
@@ -68,29 +67,30 @@ public:
 		while (!glfwWindowShouldClose(window)) {
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			currentScene = SceneManager::Instance()->getCurrentScene();
+			currentScene = sceneManager->getCurrentScene();
 			// Update the camera's (view) transformation matrix
 			view = currentScene->camera.lookAt();
 	
 			glUniformMatrix4fv(glGetUniformLocation(shader->ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
 			// Render every Entity
 			// ------------------------------------------------------------------------------------------
-			for (Entity* entity : currentScene->entities) {
+			for (RenderComponent* renderComponent : currentScene->renderComponents) {
 				// Create model transformation matrix (NOTE: Order of calculations is SCALE, ROTATE, then TRANSLATE)
-				model = glm::translate(glm::mat4(1.0f), entity->pos);
-				model = glm::rotate(model, entity->rotationAngle, entity->rotationAxis);
+				model = glm::translate(glm::mat4(1.0f), renderComponent->modelPos);
+				model = glm::rotate(model, renderComponent->rotationAngle, renderComponent->rotationAxis);
 				// Update model transformation matrix
 				glUniformMatrix4fv(glGetUniformLocation(shader->ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 				// Render
-				entity->vao.bindObject();
-				entity->texture.bindObject();
-				glDrawArrays(GL_TRIANGLES, 0, entity->vbo.getNumVertices());
+				renderComponent->vao.bindObject();
+				renderComponent->texture.bindObject();
+				glDrawArrays(GL_TRIANGLES, 0, renderComponent->vbo.getNumVertices());
 			}
-			
-			SceneManager::Instance()->update();
 			glfwSwapBuffers(window);
-			instance->checkInput(window);
 			glfwPollEvents();
+			// Update every Entity
+			for (Entity* entity : currentScene->entities) {
+				entity->update(window);
+			}
 			frameCount++;
 		}
 		return 0;

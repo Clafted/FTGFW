@@ -2,12 +2,13 @@
 #ifndef DEFAULTSCENE_H
 #define DEFAULTSCENE_H
 
-#include "Scene.hpp"
+#include "../scene/Scene.hpp"
+#include "Block.hpp"
 
 class DefaultScene : public Scene {
 public:
-	Entity* entity = nullptr;
-	Entity* entity2 = nullptr;
+	Block* entity = nullptr;
+	Block* entity2 = nullptr;
 	DefaultScene() {
 		float vertices [] = {
 		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
@@ -52,16 +53,20 @@ public:
 		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
 		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 		};
-		entity = new Entity(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
-		entity->addTexture("./Textures/Brick_Texture.png");
-		entity->pos = glm::vec3(0.0f, 0.0f, -1.0f);
+		entity = new Block(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
+		entity->rend.addTexture("textures/Brick_Texture.png");
+		entity->kin.pos = glm::vec3(0.0f, 0.0f, -1.0f);
+		renderComponents.push_back(&entity->rend);
 		entities.push_back(entity);
 
-		entity2 = new Entity(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
-		entity2->pos = glm::vec3(0.2f, -0.3f, -1.0f);
+		entity2 = new Block(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
+		entity2->kin.pos = glm::vec3(0.2f, -0.3f, -1.0f);
+		renderComponents.push_back(&entity2->rend);
 		entities.push_back(entity2);
 
-		camera.pos = glm::vec3(0.0f, 0.0f, 3.0f);
+		camera.kin.pos = glm::vec3(0.0f, 0.0f, 3.0f);
+		entities.push_back(&camera);
+
 	}
 
 	~DefaultScene() {
@@ -69,7 +74,7 @@ public:
 	}
 
 	inline Scene* update() {
-		entity->rotationAngle = (float)glfwGetTime() / glm::pi<float>();
+		entity->rend.rotationAngle = (float)glfwGetTime() / glm::pi<float>();
 		return nullptr;
 	}
 };

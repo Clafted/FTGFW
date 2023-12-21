@@ -5,17 +5,19 @@
 #include <vector>
 #include <string>
 
-#include "Entity.hpp"
+#include "../component/RenderComponent.hpp"
 #include "Camera.hpp"
 
 class Scene {
 public:
+	std::vector<RenderComponent*> renderComponents;
 	std::vector<Entity*> entities;
 	Camera camera;
 
 	Scene(){}
 
 	~Scene() {
+		renderComponents.clear();
 		entities.clear();
 	}
 

@@ -2,10 +2,11 @@
 #ifndef RENDERCOMPONENT_H
 #define RENDERCOMPONENT_H
 
-#include "OpenGLObject.hpp"
-#include "VAO.hpp"
-#include "VBO.hpp"
-#include "Texture.hpp"
+#include "../openGLObjects/OpenGLObject.hpp"
+#include "../openGLObjects/Texture.hpp"
+#include "../openGLObjects/VAO.hpp"
+#include "../openGLObjects/VBO.hpp"
+#include "Component.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -20,13 +21,14 @@
  * 
  * @author Noah Perez
  */
-class RenderComponent {
+class RenderComponent : public Component{
 public:
 	std::vector<OpenGLObject*> glObjects = {};
 	VBO vbo;
 	VAO vao;
 	Texture texture;
 
+	glm::vec3 modelPos = glm::vec3(0.0f);
 	glm::vec3 rotationAxis = glm::vec3(0.0f, 1.0f, 0.0f);
 	float rotationAngle = 0.0f;
 
@@ -62,7 +64,7 @@ public:
 		texture.createTexture(path);
 	}
 
-	
+	void update(GLFWwindow * window) {};
 };
 
 #endif

@@ -3,7 +3,7 @@
 #define TEXTURE_H
 
 #include "OpenGLObject.hpp"
-#include "stb_image.h"
+#include "../third_party/stb_image.h"
 #include <string>
 #include <fstream>
 
@@ -37,7 +37,7 @@ public:
 		bindObject();
 		if (!std::ifstream(path).good()) {
 			std::cout << "Failed to load texture with path: " << path << std::endl;
-			data = stbi_load("./Textures/MissingTexture.png", &width, &height, &nrChannels, 0);
+			data = stbi_load("openGLObjects/MissingTexture.png", &width, &height, &nrChannels, 0);
 		} else {
 			data = stbi_load(path, &width, &height, &nrChannels, 0);
 			if (!data) {

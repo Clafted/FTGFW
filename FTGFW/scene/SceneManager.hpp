@@ -25,15 +25,12 @@ public:
 	}
 	
 	inline Scene* getCurrentScene() {
-		return currentScene;
-	}
-
-	inline void update() {
 		temp = currentScene->update();
 		if (temp) {
 			delete currentScene;
 			currentScene = temp;
 		}
+		return currentScene;
 	}
 
 private:
