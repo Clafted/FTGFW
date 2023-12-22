@@ -75,7 +75,8 @@ public:
 
 	inline Scene* update() {
 		entity->rend.rotationAngle = (float)glfwGetTime() / glm::pi<float>();
-		return nullptr;
+		std::cout << "\nX: " << camera.kin.rotation.x << "\tY: " << camera.kin.rotation.y << "\tZ: " << camera.kin.rotation.z;
+ 		return nullptr;
 	}
 };
 

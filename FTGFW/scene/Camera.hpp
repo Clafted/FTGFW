@@ -15,7 +15,7 @@ public:
 	KinematicComponent kin;
 	ControllerComponent<Camera> con = ControllerComponent<Camera>(this);
 	float sensitivity = 0.5f;
-	float accelerationMagnitude = 5.0f;
+	float accelerationMagnitude = 10.0f;
 
 	Camera() {
 		con.inputHandler = &Camera::checkInputs;
@@ -31,15 +31,14 @@ public:
 	void checkInputs(GLFWwindow* window, double mouseMoveX, double mouseMoveY) {
 		// Mouse inputs
 		// ---------------------------------------------------
-		if (abs(kin.rotation.x) >= 85.0f) {
-			kin.rotation.x = 85.0f * (kin.rotation.x / abs(kin.rotation.x));
-		}
-		kin.rotation.x -= mouseMoveY * sensitivity * 3.1415f / 180.0f;
-		kin.rotation.y += mouseMoveX * sensitivity * 3.1415f / 180.0f;
+		kin.rotation.x += mouseMoveY * sensitivity * 3.1415f / 180.0f;
+		kin.rotation.y += mouseMoveX * sensitivity * 3.1415f / 180.0f;	
+		if (abs(kin.rotation.x) >= 0.9f * glm::pi<float>() / 2.0f)
+			kin.rotation.x = 0.9f * glm::sign(kin.rotation.x);
 		// Keyboard inputs
 		// ---------------------------------------------------
 		glm::vec3 input = glm::vec3(0.0f);
-		glm::vec3 inputRotation = glm::vec3(0.0f);
+		glm::vec3 inputDirection = glm::vec3(0.0f);
 		glm::vec3 finalAcceleration;
 		// Check inputs
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) input.z = -1.0f;
@@ -51,11 +50,12 @@ public:
 			kin.acceleration = glm::vec3(0.0f);
 		} else {
 			input = glm::normalize(input);
-			inputRotation.y = asin(in;
-			finalAcceleration.x = cos(kin.rotation.x) * -sin(kin.rotation.y);
-			finalAcceleration.y = sin(kin.rotation.x);
-			finalAcceleration.z = cos(kin.rotation.x) * -cos(kin.rotation.y);
-			kin.acceleration = glm::normalize(finalAcceleration) * input *  accelerationMagnitude;
+			inputDirection.y = asin(input.x);
+			if (input.z > 0.0f) inputDirection.y = 3.1415f - inputDirection.y;
+			finalAcceleration.x = cos(kin.rotation.x) * sin(kin.rotation.y + inputDirection.y);
+			finalAcceleration.y = sin(kin.rotation.x * -glm::sign(input.z));
+			finalAcceleration.z = cos(kin.rotation.x) * -cos(kin.rotation.y + inputDirection.y);
+			kin.acceleration = glm::normalize(finalAcceleration) *  accelerationMagnitude;
 		}
 	}
 
