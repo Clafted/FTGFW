@@ -59,7 +59,7 @@ public:
 
 		// Create perspective transformation matrix
 		projection = glm::perspective(glm::pi<float>() / 4.0f, (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
-		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+		shader->setMat4("projection", projection);
 		
 		// Start loop
 		// ---------------------------------------------------------------------------
@@ -68,18 +68,26 @@ public:
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			currentScene = sceneManager->getCurrentScene();
-			// Update the camera's (view) transformation matrix
+			// Update the camera's (view) uniform variables
 			view = currentScene->camera.lookAt();
-	
-			glUniformMatrix4fv(glGetUniformLocation(shader->ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+			shader->setMat4("view", view);
+			shader->setVector3("cameraPos", currentScene->camera.kinematic.pos);
+			// Update light variables
+			// ------------------------------------------------------------------------------------------
+			for (Light* light : currentScene->lights) {
+				shader->setVector3("light.pos", light->kinematic.pos);
+				shader->setVector3("light.lightColor", light->lightColor);
+				shader->setFloat("light.intensity", light->intensity);
+			}
 			// Render every Entity
 			// ------------------------------------------------------------------------------------------
 			for (RenderComponent* renderComponent : currentScene->renderComponents) {
 				// Create model transformation matrix (NOTE: Order of calculations is SCALE, ROTATE, then TRANSLATE)
 				model = glm::translate(glm::mat4(1.0f), renderComponent->modelPos);
 				model = glm::rotate(model, renderComponent->rotationAngle, renderComponent->rotationAxis);
+				model = glm::scale(model, renderComponent->scale);
 				// Update model transformation matrix
-				glUniformMatrix4fv(glGetUniformLocation(shader->ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+				shader->setMat4("model", model);
 				// Render
 				renderComponent->vao.bindObject();
 				renderComponent->texture.bindObject();

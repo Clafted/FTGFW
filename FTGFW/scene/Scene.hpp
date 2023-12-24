@@ -6,19 +6,22 @@
 #include <string>
 
 #include "../component/RenderComponent.hpp"
-#include "Camera.hpp"
+#include "./Light.hpp"
+#include "DroneCamera.hpp"
 
 class Scene {
 public:
 	std::vector<RenderComponent*> renderComponents;
 	std::vector<Entity*> entities;
-	Camera camera;
+	std::vector<Light*> lights;
+	DroneCamera camera;
 
 	Scene(){}
 
 	~Scene() {
 		renderComponents.clear();
 		entities.clear();
+		lights.clear();
 	}
 
 	/**

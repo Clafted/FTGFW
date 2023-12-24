@@ -14,6 +14,10 @@ public:
 		components.push_back(&rend);
 	};
 	~Block() {};
+
+	inline void update(GLFWwindow* window) {
+		rend.modelPos = kin.pos;
+	}
 };
 
 #endif

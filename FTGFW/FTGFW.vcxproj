@@ -157,7 +157,9 @@
     <ClInclude Include="openGLObjects\VAO.hpp" />
     <ClInclude Include="openGLObjects\VBO.hpp" />
     <ClInclude Include="scene\Camera.hpp" />
+    <ClInclude Include="scene\DroneCamera.hpp" />
     <ClInclude Include="scene\Entity.hpp" />
+    <ClInclude Include="scene\Light.hpp" />
     <ClInclude Include="scene\Scene.hpp" />
     <ClInclude Include="scene\SceneManager.hpp" />
     <ClInclude Include="shaders\Shader.hpp" />

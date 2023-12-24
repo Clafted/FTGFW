@@ -10,7 +10,10 @@ class Entity {
 public:
 	std::vector<Component*> components;
 
-	void update(GLFWwindow* window) {
+	/* Updates components and other necessary parts of the Entity
+	 *
+	 * @param window - a GLFWwindow* to use pull any window-related data from*/
+	virtual void update(GLFWwindow* window) {
 		for (Component* component : components) {
 			component->update(window);
 		}
