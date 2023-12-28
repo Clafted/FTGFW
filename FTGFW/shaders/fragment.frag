@@ -2,7 +2,6 @@
 out vec4 FragColor;
 
 in vec2 texCoord;
-in vec3 lightPos;
 in vec3 normal;
 in vec3 fragmentPos;
 
@@ -12,7 +11,13 @@ struct Light {
     float intensity;
 };
 
-uniform sampler2D u_currentTexture;
+struct Material {
+    sampler2D u_currentTexture;
+    sampler2D u_specularMap;
+    float shininess;
+};
+
+uniform Material material;
 uniform Light light = Light(vec3(0.0), vec3(0.0), 0.0);
 uniform vec3 cameraPos;
 
@@ -29,7 +34,10 @@ void main() {
     vec3 reflectionDirection = reflect(-lightDirection, normalize(normal));
     float specularFactor = pow(max(dot(viewDirection, reflectionDirection), 0.0), shininess);
     // Calculate final fragment color;
-    FragColor = light.intensity 
+    FragColor = texture(material.u_currentTexture, texCoord)
+                * light.intensity 
                 * (vec4(light.lightColor, 1.0) 
-                * (diffuseFactor + ambientStrength + specularFactor));
+                    * (diffuseFactor 
+                        + ambientStrength
+                        + specularFactor * texture(material.u_specularMap, texCoord)));         // [scalar] + [vector/matrix] is component-wise on GPU
 } 

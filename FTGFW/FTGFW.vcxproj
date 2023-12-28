@@ -143,6 +143,8 @@
   <ItemGroup>
     <Image Include="openGLObjects\MissingTexture.png" />
     <Image Include="Textures\Brick_Texture.png" />
+    <Image Include="textures\container2.png" />
+    <Image Include="textures\container2_specular.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="component\Component.hpp" />

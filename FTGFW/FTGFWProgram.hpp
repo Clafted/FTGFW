@@ -57,6 +57,9 @@ public:
 		glEnable(GL_DEPTH_TEST);
 		glUseProgram(shader->ID);
 
+		shader->setInt("u_currentTexture", 0);
+		shader->setInt("u_specularMap", 1);
+
 		// Create perspective transformation matrix
 		projection = glm::perspective(glm::pi<float>() / 4.0f, (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
 		shader->setMat4("projection", projection);
@@ -90,7 +93,9 @@ public:
 				shader->setMat4("model", model);
 				// Render
 				renderComponent->vao.bindObject();
+				glActiveTexture(GL_TEXTURE0);
 				renderComponent->texture.bindObject();
+				glActiveTexture(GL_TEXTURE1);
 				glDrawArrays(GL_TRIANGLES, 0, renderComponent->vbo.getNumVertices());
 			}
 			glfwSwapBuffers(window);
