@@ -49,11 +49,11 @@ private:
 	float previousTime = 0.0f;
 
 	float speed(glm::vec3 & velocity) {
-		return sqrt(pow(velocity.x, 2) + pow(velocity.y, 2) + pow(velocity.z, 2));
+		return (float) (sqrt(pow(velocity.x, 2) + pow(velocity.y, 2) + pow(velocity.z, 2)));
 	}
 
 	float accelerationMagnitude(glm::vec3 & acceleration) {
-		return sqrt(pow(acceleration.x, 2) + pow(acceleration.y, 2) + pow(acceleration.z, 2));
+		return (float) (sqrt(pow(acceleration.x, 2) + pow(acceleration.y, 2) + pow(acceleration.z, 2)));
 	}
 };
 

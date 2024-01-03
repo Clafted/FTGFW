@@ -3,7 +3,7 @@
 #define ENTITY_H
 
 #include "../component/Component.hpp"
-#include "GLFW/glfw3.h"
+#include "../openGLObjects/GLIncludes.hpp"
 #include <vector>
 
 class Entity {

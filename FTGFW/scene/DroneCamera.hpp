@@ -5,6 +5,9 @@
 
 class DroneCamera : public Camera {
 public:
+	float sensitivity = 0.5f;
+	float accelerationMagnitude = 10.0f;
+
 	ControllerComponent<DroneCamera> controller = ControllerComponent<DroneCamera>(this);
 
 	DroneCamera() {
@@ -15,12 +18,12 @@ public:
 	void checkInputs(GLFWwindow* window, double mouseMoveX, double mouseMoveY) {
 		// Mouse inputs
 		// ---------------------------------------------------
-		kinematic.rotation.y += mouseMoveX * sensitivity * 3.1415f / 180.0f;
+		kinematic.rotation.y += (float) (mouseMoveX * sensitivity * 3.1415f / 180.0f);
 		if (abs(kinematic.rotation.x) >= 0.9f * glm::pi<float>() / 2.0f) {
-			kinematic.rotation.x = 0.9f * glm::sign(kinematic.rotation.x);
+			kinematic.rotation.x = (float) (0.9f * glm::sign(kinematic.rotation.x));
 		}
 		else {
-			kinematic.rotation.x += mouseMoveY * sensitivity * 3.1415f / 180.0f;
+			kinematic.rotation.x += (float) (mouseMoveY * sensitivity * 3.1415f / 180.0f);
 		}
 		// Keyboard inputs
 		// ---------------------------------------------------

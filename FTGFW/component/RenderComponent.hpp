@@ -26,7 +26,8 @@ public:
 	std::vector<OpenGLObject*> glObjects = {};
 	VBO vbo;
 	VAO vao;
-	Texture texture;
+	Texture diffuseMap;
+	Texture specularMap;
 
 	glm::vec3 modelPos;
 	glm::vec3 rotationAxis;
@@ -38,33 +39,45 @@ public:
 	 * @param vertices - a pointer to the array of vertices
 	 * @param size - the size of the array of vertices
 	 * @param usage - how the vertices will be rendered */
-	RenderComponent(const void* vertices, GLsizeiptr size, GLenum usage) 
+	RenderComponent(const void* vertices, GLsizeiptr size, GLenum usage, std::string diffusePath = Texture::defaultPath, std::string specularPath = Texture::defaultPath) 
 		: modelPos(0.0f),
 		  rotationAxis(0.0f, 1.0f, 0.0f),
 	      scale(1.0f),
 		  rotationAngle(0.0f) {
+
 		vao.bindObject();
 		vbo = VBO(vertices, size, usage);
+		diffuseMap = Texture(diffusePath.c_str());
+		specularMap = Texture(specularPath.c_str());
 
 		glObjects.assign(0, &vao);
 		glObjects.assign(1, &vbo);
-		glObjects.assign(2, &texture);
+		glObjects.assign(2, &diffuseMap);
+		glObjects.assign(3, &specularMap);
 	}
 
 	~RenderComponent() {
 		glObjects.clear();
 	}
-	/* Get the ID of the VAO of the renderable component 
+	/* Get the ID of the VAO of the renderable component
+	 * 
 	 * @return ID of VAO containing the graphics data  */
 	unsigned int vaoID() {
 		return glObjects[0]->ID;
 	}
 
-	/* Add a texture to use with the RenderComponent.
+	/* Add a diffuseMap to use with the RenderComponent.
 	 * 
-	 * @param path the path to the texture */
-	void addTexture(const char* path) {
-		texture.createTexture(path);
+	 * @param path - the path to the diffuseMap */
+	void setDiffuseMap(std::string path) {
+		diffuseMap.createTexture(path.c_str());
+	}
+
+	/* Set the specular map of the RenderComponent.
+	 *
+	 * @param path - the path to the specular map*/
+	void setSpecularMap(std::string path) {
+		specularMap.createTexture(path.c_str());
 	}
 
 	void update(GLFWwindow * window) {};

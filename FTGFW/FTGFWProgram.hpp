@@ -2,31 +2,36 @@
 #ifndef FTGFWPROGRAM_H
 #define FTGFWPROGRAM_H
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "./openGLObjects/GLIncludes.hpp"
 #include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "./scene/Scene.hpp"
-#include "./scene/SceneManager.hpp"
-#include "./shaders/Shader.hpp"
+#include "scene/Scene.hpp"
+#include "scene/SceneManager.hpp"
+#include "shaders/Shader.hpp"
 
 class FTGFWProgram {
 public:
 	GLFWwindow* window = nullptr;
-	Shader* shader = nullptr;
 	unsigned int screenWidth = 800, screenHeight = 600;
 	unsigned int frameCount = 0;
-
-	FTGFWProgram() {}
 
 	~FTGFWProgram() {
 		std::cout << "Average frame rate: " << frameCount / glfwGetTime() << " FPS";
 		// Free resouces and terminate program
-		delete shader;
 		glfwTerminate();
+	}
+
+	static FTGFWProgram* Instance() {
+		if (!instance) instance = new FTGFWProgram();
+		return instance;
+	}
+
+	static void terminate() { 
+		SceneManager::terminate();
+		delete instance; 
 	}
 
 	/**
@@ -38,12 +43,10 @@ public:
 		return 0;
 	}
 
-	
 	/**
 	 * Begin the render loop with the given starting-scene.
 	 *
-	 * @param startingScene - a pointer to the Scene object to initialize with
-	 */
+	 * @param startingScene - a pointer to the Scene object to initialize with */
 	int initRenderLoop(Scene* startingScene) {
 		glm::mat4 model;
 		glm::mat4 projection;
@@ -53,16 +56,16 @@ public:
 		sceneManager->setStartScene(startingScene);
 		
 		// Use Shaders
-		shader = new Shader("./shaders/vertex.vert", "./shaders/fragment.frag");
+		Shader shader = Shader("./shaders/vertex.vert", "./shaders/fragment.frag");
 		glEnable(GL_DEPTH_TEST);
-		glUseProgram(shader->ID);
+		glUseProgram(shader.ID);
 
-		shader->setInt("u_currentTexture", 0);
-		shader->setInt("u_specularMap", 1);
+		shader.setInt("material.u_currentTexture", 0);
+		shader.setInt("material.u_specularMap", 1);
 
 		// Create perspective transformation matrix
 		projection = glm::perspective(glm::pi<float>() / 4.0f, (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
-		shader->setMat4("projection", projection);
+		shader.setMat4("projection", projection);
 		
 		// Start loop
 		// ---------------------------------------------------------------------------
@@ -71,17 +74,28 @@ public:
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			currentScene = sceneManager->getCurrentScene();
+
 			// Update the camera's (view) uniform variables
-			view = currentScene->camera.lookAt();
-			shader->setMat4("view", view);
-			shader->setVector3("cameraPos", currentScene->camera.kinematic.pos);
+			view = currentScene->camera->lookAt();
+			shader.setMat4("view", view);
+			shader.setVector3("cameraPos", currentScene->camera->kinematic.pos);
+
+			std::string iterator;
 			// Update light variables
 			// ------------------------------------------------------------------------------------------
-			for (Light* light : currentScene->lights) {
-				shader->setVector3("light.pos", light->kinematic.pos);
-				shader->setVector3("light.lightColor", light->lightColor);
-				shader->setFloat("light.intensity", light->intensity);
+			for (int i = 0; i < 4; i++) {
+
+				if (!currentScene->lights[i]) continue;
+				iterator = "pointLights[" + std::to_string(i) + "]";
+
+				shader.setVector3(iterator + ".pos", currentScene->lights[i]->kinematic.pos);
+				shader.setVector3(iterator + ".lightColor", currentScene->lights[i]->lightColor);
+				shader.setFloat(iterator + ".intensity", currentScene->lights[i]->intensity);
+				shader.setFloat(iterator + ".ambientStrength", 0.5f);
+				shader.setFloat(iterator + ".diffuseStrength", 0.5f);
+				shader.setFloat(iterator + ".specularStrength", 0.5f);
 			}
+
 			// Render every Entity
 			// ------------------------------------------------------------------------------------------
 			for (RenderComponent* renderComponent : currentScene->renderComponents) {
@@ -89,17 +103,21 @@ public:
 				model = glm::translate(glm::mat4(1.0f), renderComponent->modelPos);
 				model = glm::rotate(model, renderComponent->rotationAngle, renderComponent->rotationAxis);
 				model = glm::scale(model, renderComponent->scale);
+				
 				// Update model transformation matrix
-				shader->setMat4("model", model);
+				shader.setMat4("model", model);
+				
 				// Render
 				renderComponent->vao.bindObject();
 				glActiveTexture(GL_TEXTURE0);
-				renderComponent->texture.bindObject();
+				renderComponent->diffuseMap.bindObject();
 				glActiveTexture(GL_TEXTURE1);
+				renderComponent->specularMap.bindObject();
 				glDrawArrays(GL_TRIANGLES, 0, renderComponent->vbo.getNumVertices());
 			}
 			glfwSwapBuffers(window);
 			glfwPollEvents();
+
 			// Update every Entity
 			for (Entity* entity : currentScene->entities) {
 				entity->update(window);
@@ -110,6 +128,11 @@ public:
 	}
 
 private:
+
+	static FTGFWProgram* instance;
+
+	FTGFWProgram() {}
+
 	static void frameBufferSizeCallback(GLFWwindow* window, int width, int height) {
 		glViewport(0, 0, width, height);
 	}

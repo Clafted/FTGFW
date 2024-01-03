@@ -3,8 +3,7 @@
 #define OPENGLOBJECT_H
 
 #include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "GLIncludes.hpp"
 
 /* 
  * The OpenGLObject interface creates an inheritance

@@ -27,9 +27,6 @@
     <ClCompile Include="scene\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scene\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="third_party\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -40,6 +37,12 @@
       <Filter>Demo</Filter>
     </ClCompile>
     <ClCompile Include="component\Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="openGLObjects\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FTGFWProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,9 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shaders\Shader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scene\SceneManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scene\Entity.hpp">
@@ -113,6 +113,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scene\Light.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\SceneManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="openGLObjects\GLIncludes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,25 +3,27 @@
 #define SCENE_H
 
 #include <vector>
+#include <array>
 #include <string>
 
 #include "../component/RenderComponent.hpp"
-#include "./Light.hpp"
+#include "Light.hpp"
 #include "DroneCamera.hpp"
 
 class Scene {
 public:
 	std::vector<RenderComponent*> renderComponents;
 	std::vector<Entity*> entities;
-	std::vector<Light*> lights;
-	DroneCamera camera;
+	std::array<Light*, 4> lights = {};
+	Camera* camera;
 
 	Scene(){}
 
 	~Scene() {
 		renderComponents.clear();
 		entities.clear();
-		lights.clear();
+		for (Light* light : lights) delete light;
+		delete camera;
 	}
 
 	/**
