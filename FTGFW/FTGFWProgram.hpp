@@ -135,6 +135,7 @@ private:
 
 	static void frameBufferSizeCallback(GLFWwindow* window, int width, int height) {
 		glViewport(0, 0, width, height);
+		SceneManager::Instance()->getCurrentScene()->setScreenDimensions(width, height);
 	}
 
 	int glfwSetup() {

@@ -10,7 +10,8 @@ public:
 
 	ControllerComponent<DroneCamera> controller = ControllerComponent<DroneCamera>(this);
 
-	DroneCamera() {
+	DroneCamera(float screenWidth, float screenHeigth, float fov = 45.0f) 
+		: Camera(screenWidth, screenHeigth, fov) {
 		controller.inputHandler = &DroneCamera::checkInputs;
 		components.push_back(&controller);
 	}

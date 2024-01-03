@@ -16,6 +16,9 @@ public:
 	glm::vec3 velocity = glm::vec3(0.0f);
 	glm::vec3 acceleration = glm::vec3(0.0f);
 
+	KinematicComponent(){}
+	~KinematicComponent(){}
+
 	void update(GLFWwindow * window) {
 		deltaTime = (float)glfwGetTime() - previousTime;
 		// Limit deltaTime

@@ -19,9 +19,11 @@
 class Camera : public Entity{
 public:
 	KinematicComponent kinematic;
-	glm::mat4 projectionMatrix = glm::perspective(45.0f, (float) FTGFWProgram::Instance()->screenWidth / (float) FTGFWProgram::Instance()->screenHeight, 0.1f, 100.0f);
+	glm::mat4 projectionMatrix;
+	float fov;
 
-	Camera() {
+	Camera(float screenWidth, float screenHeight, float fov = 45.0f)
+		: fov(fov), projectionMatrix(glm::perspective(fov, screenWidth / screenHeight, 0.1f, 100.0f)) {
 		components = { &kinematic };
 	};
 	~Camera() {};
@@ -32,6 +34,10 @@ public:
 	 */
 	glm::mat4 lookAt() {
 		return glm::lookAt(kinematic.pos, kinematic.pos + kinematic.direction, glm::vec3(0.0f, 1.0f, 0.0f));
+	}
+
+	void setScreenDimensions(float screenWidth, float screenHeight) {
+		projectionMatrix = glm::perspective(fov, screenWidth / screenHeight, 0.1f, 100.0f);
 	}
 
 private:

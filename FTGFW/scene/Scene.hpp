@@ -15,15 +15,21 @@ public:
 	std::vector<RenderComponent*> renderComponents;
 	std::vector<Entity*> entities;
 	std::array<Light*, 4> lights = {};
-	Camera* camera;
+	float screenWidth, screenHeight;
+	Camera* camera = nullptr;
 
-	Scene(){}
+	Scene(float screenWidth, float screenHeight)
+		: screenWidth(screenWidth), screenHeight(screenHeight) {}
 
 	~Scene() {
 		renderComponents.clear();
 		entities.clear();
 		for (Light* light : lights) delete light;
 		delete camera;
+	}
+
+	void setScreenDimensions(float screenWidth, float screenHeight) {
+		camera->setScreenDimensions(screenWidth, screenHeight);
 	}
 
 	/**

@@ -34,8 +34,22 @@ public:
 	glm::vec3 scale;
 	float rotationAngle;
 
-	/* A Constructor for the RenderComponent class
+	RenderComponent()
+		: modelPos(0.0f),
+		  rotationAxis(0.0f, 1.0f, 0.0f),
+		  scale(1.0f),
+		  rotationAngle(0.0f) {}
+
+	/**
+	 * A Constructor for the RenderComponent class
 	 *
+	 * NOTE: Since RenderComponent objects include textures,
+	 * the vertices provided MUST contain the following three
+	 * pieces of vertex information (in the same order):
+	 * 1. 3D Model Coordinates
+	 * 2. 2D Texture Coordinates
+	 * 3. 3D Normal Vector
+	 * 
 	 * @param vertices - a pointer to the array of vertices
 	 * @param size - the size of the array of vertices
 	 * @param usage - how the vertices will be rendered */

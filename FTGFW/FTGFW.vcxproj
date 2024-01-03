@@ -154,12 +154,15 @@
     <ClInclude Include="component\RenderComponent.hpp" />
     <ClInclude Include="Demo\Block.hpp" />
     <ClInclude Include="Demo\DefaultScene.hpp" />
+    <ClInclude Include="Demo\LandGenerationScene.hpp" />
+    <ClInclude Include="Demo\ProceduralPlane.hpp" />
     <ClInclude Include="FTGFWProgram.hpp" />
     <ClInclude Include="openGLObjects\GLIncludes.hpp" />
     <ClInclude Include="openGLObjects\OpenGLObject.hpp" />
     <ClInclude Include="openGLObjects\Texture.hpp" />
     <ClInclude Include="openGLObjects\VAO.hpp" />
     <ClInclude Include="openGLObjects\VBO.hpp" />
+    <ClInclude Include="ProceduralPlane.hpp" />
     <ClInclude Include="scene\Camera.hpp" />
     <ClInclude Include="scene\DroneCamera.hpp" />
     <ClInclude Include="scene\Entity.hpp" />
