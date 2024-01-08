@@ -2,14 +2,19 @@
 #ifndef SCENEMANAGER_H
 #define SCENEMANAGER_H
 
-#include "./Scene.hpp"
+#include "Scene.hpp"
+#include <string>
+#include <map>
 
+/* A Singleton class to manager the queueing and transitions of Scene Objects. */
 class SceneManager {
 public:
 
 	inline ~SceneManager() {
-		delete currentScene;
-		delete temp;
+		currentScene = nullptr;
+		for (std::map<std::string, Scene*>::iterator i = scenes.begin(); i != scenes.end(); i++) {
+			delete i->second;
+		}
 	}
 
 	inline static SceneManager* Instance() {
@@ -18,23 +23,28 @@ public:
 	}
 
 	static void terminate() { delete instance; }
-
-	inline void setStartScene(Scene* scene) {
-		instance->currentScene = scene; 
-	}
 	
 	inline Scene* getCurrentScene() {
-		temp = currentScene->update();
-		if (temp) {
-			delete currentScene;
-			currentScene = temp;
-		}
 		return currentScene;
+	}
+
+	inline void addScene(std::string name, Scene* scene) {
+		scenes.insert(std::pair<std::string, Scene*>(name, scene));
+	}
+
+	inline void setScene(std::string name) {
+		if (scenes.find(name) != scenes.end()) {
+			if(currentScene) currentScene->exitScene();
+			std::cout << "\nFound scene. Switching to scene: " << name;
+			currentScene = scenes.find(name)->second;
+			currentScene->setupScene();
+		}
 	}
 
 private:
 	static SceneManager* instance;
-	Scene *currentScene = nullptr, *temp = nullptr;
+	std::map<std::string, Scene*> scenes;
+	Scene *currentScene = nullptr;
 
 	SceneManager() {}
 };

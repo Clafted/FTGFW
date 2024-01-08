@@ -6,6 +6,7 @@
 #include "../openGLObjects/Texture.hpp"
 #include "../openGLObjects/VAO.hpp"
 #include "../openGLObjects/VBO.hpp"
+#include "../openGLObjects/EBO.hpp"
 #include "Component.hpp"
 
 #include <glm/glm.hpp>
@@ -26,6 +27,7 @@ public:
 	std::vector<OpenGLObject*> glObjects = {};
 	VBO vbo;
 	VAO vao;
+	EBO ebo;
 	Texture diffuseMap;
 	Texture specularMap;
 
@@ -51,23 +53,23 @@ public:
 	 * 3. 3D Normal Vector
 	 * 
 	 * @param vertices - a pointer to the array of vertices
-	 * @param size - the size of the array of vertices
+	 * @param sizeOfVertices - the size of the array of vertices
+	 * @param sizeOfIndices - the size of the array of indices
 	 * @param usage - how the vertices will be rendered */
-	RenderComponent(const void* vertices, GLsizeiptr size, GLenum usage, std::string diffusePath = Texture::defaultPath, std::string specularPath = Texture::defaultPath) 
+	RenderComponent(const void* vertices, const void* indices, GLsizeiptr sizeOfVertices, GLsizeiptr sizeOfIndices, GLenum usage, std::string diffusePath = Texture::defaultPath, std::string specularPath = Texture::defaultPath) 
 		: modelPos(0.0f),
 		  rotationAxis(0.0f, 1.0f, 0.0f),
 	      scale(1.0f),
 		  rotationAngle(0.0f) {
 
 		vao.bindObject();
-		vbo = VBO(vertices, size, usage);
+		ebo = EBO(indices, sizeOfIndices, usage);
+		vbo = VBO(vertices, sizeOfVertices, usage);
+		
 		diffuseMap = Texture(diffusePath.c_str());
 		specularMap = Texture(specularPath.c_str());
-
-		glObjects.assign(0, &vao);
-		glObjects.assign(1, &vbo);
-		glObjects.assign(2, &diffuseMap);
-		glObjects.assign(3, &specularMap);
+		
+		glObjects = { &vao, &vbo, &ebo, &diffuseMap, &specularMap };
 	}
 
 	~RenderComponent() {

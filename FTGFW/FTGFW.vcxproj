@@ -137,6 +137,8 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="openGLObjects\Texture.cpp" />
     <ClCompile Include="scene\Entity.cpp" />
+    <ClCompile Include="scene\Renderer.cpp" />
+    <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="scene\SceneManager.cpp" />
     <ClCompile Include="third_party\glad.c" />
     <ClCompile Include="third_party\stb_image.cpp" />
@@ -146,6 +148,8 @@
     <Image Include="Textures\Brick_Texture.png" />
     <Image Include="textures\container2.png" />
     <Image Include="textures\container2_specular.png" />
+    <Image Include="textures\Perlin_noise_example.png" />
+    <Image Include="textures\PlainGrass.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="component\Component.hpp" />
@@ -157,16 +161,18 @@
     <ClInclude Include="Demo\LandGenerationScene.hpp" />
     <ClInclude Include="Demo\ProceduralPlane.hpp" />
     <ClInclude Include="FTGFWProgram.hpp" />
+    <ClInclude Include="openGLObjects\EBO.hpp" />
     <ClInclude Include="openGLObjects\GLIncludes.hpp" />
     <ClInclude Include="openGLObjects\OpenGLObject.hpp" />
     <ClInclude Include="openGLObjects\Texture.hpp" />
     <ClInclude Include="openGLObjects\VAO.hpp" />
     <ClInclude Include="openGLObjects\VBO.hpp" />
-    <ClInclude Include="ProceduralPlane.hpp" />
     <ClInclude Include="scene\Camera.hpp" />
     <ClInclude Include="scene\DroneCamera.hpp" />
     <ClInclude Include="scene\Entity.hpp" />
     <ClInclude Include="scene\Light.hpp" />
+    <ClInclude Include="scene\LightCasters.hpp" />
+    <ClInclude Include="scene\Renderer.hpp" />
     <ClInclude Include="scene\Scene.hpp" />
     <ClInclude Include="scene\SceneManager.hpp" />
     <ClInclude Include="shaders\Shader.hpp" />

@@ -3,32 +3,52 @@
 
 #include "../scene/Scene.hpp"
 #include "../scene/DroneCamera.hpp"
+#include "../component/ControllerComponent.hpp"
 #include "ProceduralPlane.hpp"
 #include "Block.hpp"
 
-class LandGenerationScene : public Scene{
+class LandGenerationScene : public Scene {
 public:
 	ProceduralPlane* plane;
 	Light* light;
+	Block* block;
+	float time = 0.0f;
+	float previousTime = 0.0f;
 
-	LandGenerationScene(float screenWidth, float screenHeight) 
-		: Scene(screenWidth, screenHeight) {
-
-		camera = new DroneCamera(screenWidth, screenHeight, 60.0f);
+	LandGenerationScene() {
 		plane = new ProceduralPlane();
-		plane->render->scale = glm::vec3(2.0f);
-
-		light = new Light();
-		light->kinematic.pos = glm::vec3(0.6f, 5.0f, 0.5f);
-		light->intensity = 1.0f;
-		lights[0] = light;
-
-		renderComponents = { plane->render, &light->render };
-		entities = { camera, plane, light };
+		block = new Block();
+		light = new Light(glm::vec3(plane->width / 4.0f, 50.0f, plane->height / 4.0f), glm::vec3(1.0f), 50.0f);
+		camera = new DroneCamera(screenWidth, screenHeight, 60.0f * glm::pi<float>() / 180.0f, 0.1f, 2000.0f);
+		
+		camera->kinematic.pos = glm::vec3(plane->genVertices[(plane->width * (plane->height + 1) / 2) * 8], plane->genVertices[(plane->width * (plane->height + 1) / 2) * 8 + 1] + 1.0f, plane->genVertices[(plane->width * (plane->height + 1) / 2) * 8 + 2]);
+		entities = { camera, plane, light, block };
 	}
 
 	~LandGenerationScene() {
 		delete plane;
+		delete block;
+		delete light;
+	}
+
+	void setupScene() {
+		Renderer::Instance()->renderComponents.push_back(plane->render);
+		Renderer::Instance()->renderComponents.push_back(&light->render);
+		Renderer::Instance()->renderComponents.push_back(&block->rend);
+		Renderer::Instance()->lights[0] = &light->light;
+		previousTime = (float)glfwGetTime();
+	}
+
+	void exitScene() {
+		Renderer::Instance()->renderComponents.clear();
+		Renderer::Instance()->lights[0] = nullptr;
+		time = 0.0f;
+	}
+
+	void update(GLFWwindow* window) {
+		Scene::update(window);
+		time += glfwGetTime() - previousTime;
+		previousTime = (float)glfwGetTime();
 	}
 };
 

@@ -4,7 +4,7 @@
 
 #include "OpenGLObject.hpp"
 
-/* 
+/** 
  * The VBO class simpilifies the use of OpenGL Vertex Array Objects
  * 
  * @author Noah Perez
@@ -29,7 +29,9 @@ public:
 	inline void bindObject() { 
 		glBindBuffer(GL_ARRAY_BUFFER, ID);
 	}
+
 	inline void unbindObject() {}
+
 	inline int getNumVertices() {
 		return numVertices;
 	}
@@ -46,7 +48,6 @@ public:
 		bindObject();
 		glBufferData(GL_ARRAY_BUFFER, size, vertices, usage);
 		numVertices = (int)size / (sizeof(float) * 8);
-		std::cout << "Setting vertices, first number is: " << vertices << "\n";
 	}
 
 private:

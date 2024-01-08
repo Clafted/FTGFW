@@ -2,26 +2,28 @@
 #define DRONECAMERA_H
 
 #include "./Camera.hpp"
+#include "../scene/SceneManager.hpp"
 
+class DefaultScene;
+class LandGenerationScene;
 class DroneCamera : public Camera {
 public:
 	float sensitivity = 0.5f;
 	float accelerationMagnitude = 10.0f;
 
-	ControllerComponent<DroneCamera> controller = ControllerComponent<DroneCamera>(this);
+	ControllerComponent<DroneCamera> controller = ControllerComponent<DroneCamera>(this, &DroneCamera::inputHandler);
 
-	DroneCamera(float screenWidth, float screenHeigth, float fov = 45.0f) 
-		: Camera(screenWidth, screenHeigth, fov) {
-		controller.inputHandler = &DroneCamera::checkInputs;
+	DroneCamera(float screenWidth, float screenHeigth, float fov = 45.0f, float near = 0.1f, float far = 100.0f) 
+		: Camera(screenWidth, screenHeigth, fov, near, far) {
 		components.push_back(&controller);
 	}
 
-	void checkInputs(GLFWwindow* window, double mouseMoveX, double mouseMoveY) {
+	void inputHandler(GLFWwindow* window, double mouseMoveX, double mouseMoveY) {
 		// Mouse inputs
 		// ---------------------------------------------------
 		kinematic.rotation.y += (float) (mouseMoveX * sensitivity * 3.1415f / 180.0f);
-		if (abs(kinematic.rotation.x) >= 0.9f * glm::pi<float>() / 2.0f) {
-			kinematic.rotation.x = (float) (0.9f * glm::sign(kinematic.rotation.x));
+		if (abs(kinematic.rotation.x) > 0.9f * glm::pi<float>() / 2.0f) {
+			kinematic.rotation.x = (float) (0.9f * glm::pi<float>() / 2.0f * glm::sign(kinematic.rotation.x));
 		}
 		else {
 			kinematic.rotation.x += (float) (mouseMoveY * sensitivity * 3.1415f / 180.0f);
@@ -39,6 +41,9 @@ public:
 		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) input.y = 1.0f;
 		if (glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) input.y = -1.0f; 
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) glfwSetWindowShouldClose(window, true);
+		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) SceneManager::Instance()->setScene("DefaultScene");
+		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) SceneManager::Instance()->setScene("LandGenerationScene");
+		//if (glfwGetScrol)
 		// Calculate final acceleration
 		if (input == glm::vec3(0.0f)) {
 			kinematic.acceleration = glm::vec3(0.0f);

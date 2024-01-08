@@ -21,10 +21,16 @@ public:
 	KinematicComponent kinematic;
 	glm::mat4 projectionMatrix;
 	float fov;
+	float near, far;
 
-	Camera(float screenWidth, float screenHeight, float fov = 45.0f)
-		: fov(fov), projectionMatrix(glm::perspective(fov, screenWidth / screenHeight, 0.1f, 100.0f)) {
-		components = { &kinematic };
+	Camera(float screenWidth, float screenHeight, float fov = 45.0f, float near = 0.1f, float far = 100.0f)
+		: projectionMatrix(glm::perspective(fov, screenWidth / screenHeight, near, far)) {
+
+		this->fov = fov;
+		this->near = near;
+		this->far = far;
+
+		components.push_back(&kinematic);
 	};
 	~Camera() {};
 
@@ -37,7 +43,7 @@ public:
 	}
 
 	void setScreenDimensions(float screenWidth, float screenHeight) {
-		projectionMatrix = glm::perspective(fov, screenWidth / screenHeight, 0.1f, 100.0f);
+		projectionMatrix = glm::perspective(fov, screenWidth / screenHeight, near, far);
 	}
 
 private:

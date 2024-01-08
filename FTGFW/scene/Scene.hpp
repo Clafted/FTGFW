@@ -6,40 +6,41 @@
 #include <array>
 #include <string>
 
-#include "../component/RenderComponent.hpp"
+#include "Entity.hpp"
 #include "Light.hpp"
-#include "DroneCamera.hpp"
+#include "Camera.hpp"
+#include "Renderer.hpp"
 
 class Scene {
 public:
-	std::vector<RenderComponent*> renderComponents;
 	std::vector<Entity*> entities;
 	std::array<Light*, 4> lights = {};
-	float screenWidth, screenHeight;
+	static int screenWidth, screenHeight;
 	Camera* camera = nullptr;
 
-	Scene(float screenWidth, float screenHeight)
-		: screenWidth(screenWidth), screenHeight(screenHeight) {}
+	Scene() {}
 
 	~Scene() {
-		renderComponents.clear();
-		entities.clear();
-		for (Light* light : lights) delete light;
 		delete camera;
 	}
 
-	void setScreenDimensions(float screenWidth, float screenHeight) {
+	void setScreenDimensions(int screenWidth, int screenHeight) {
 		camera->setScreenDimensions(screenWidth, screenHeight);
+		Scene::screenWidth = screenWidth;
+		Scene::screenHeight = screenHeight;
 	}
 
+	virtual void setupScene() = 0;
+
 	/**
-	 * Makes any changes to the Scene.
-	 * 
-	 * By default, nullptr is returned, and nothing else is changed.
-	 */
-	virtual inline Scene* update() {
-		return nullptr;
+	 * Makes any changes to the Scene. */
+	virtual inline void update(GLFWwindow * window) {
+		for (Entity* entity : entities) {
+			entity->update(window);
+		}
 	}
+
+	virtual void exitScene() = 0;
 };
 
 #endif

@@ -2,6 +2,10 @@
 #define SHADER_H
 
 #include "../openGLObjects/GLIncludes.hpp"
+#include "glm/ext.hpp"
+#include "glm/mat4x4.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/vec3.hpp"
 
 #include <string>
 #include <fstream>

@@ -33,7 +33,7 @@ struct Material {
 
 #define NUM_POINT_LIGHTS 4
 uniform PointLight pointLights[NUM_POINT_LIGHTS];
-uniform DirectionalLight dirLight = DirectionalLight(vec3(0.4, 0.3f, 0.0), vec3(0.1, 0.4, 0.6), 2.0, 0.5, 0.5, 0.5);
+uniform DirectionalLight dirLight = DirectionalLight(vec3(0.4, -0.2, 0.0), vec3(1.0, 0.93, 0.8), 0.8, 0.5, 0.5, 0.5);
 uniform Material material;
 uniform vec3 cameraPos;
 
@@ -68,7 +68,7 @@ vec3 calculateDirectionalLight(vec3 diffuseColor, vec3 specularColor) {
     diffuse = max(0.0, dot(normal, normalize(-dirLight.direction)));
     // Calculate specular lighting
     eyePos = normalize(cameraPos - fragmentPos);
-    reflectionDirection = reflect(dirLight.direction, normal);
+    reflectionDirection = reflect(normalize(dirLight.direction), normal);
     specular = pow(max(0.0, dot(eyePos, reflectionDirection)), 65);        // Shininess is set to 65
     
     ambientValue = dirLight.ambientStrength * diffuseColor;

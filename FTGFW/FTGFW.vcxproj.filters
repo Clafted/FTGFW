@@ -45,6 +45,12 @@
     <ClCompile Include="FTGFWProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scene\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\Brick_Texture.png">
@@ -57,6 +63,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="textures\container2_specular.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\Perlin_noise_example.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\PlainGrass.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -119,6 +131,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="openGLObjects\GLIncludes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="openGLObjects\EBO.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Demo\LandGenerationScene.hpp">
+      <Filter>Demo</Filter>
+    </ClInclude>
+    <ClInclude Include="Demo\ProceduralPlane.hpp">
+      <Filter>Demo</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\Renderer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\LightCasters.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
