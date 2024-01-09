@@ -21,7 +21,7 @@ public:
 		light = new Light(glm::vec3(plane->width / 4.0f, 50.0f, plane->height / 4.0f), glm::vec3(1.0f), 50.0f);
 		camera = new DroneCamera(screenWidth, screenHeight, 60.0f * glm::pi<float>() / 180.0f, 0.1f, 2000.0f);
 		
-		camera->kinematic.pos = glm::vec3(plane->genVertices[(plane->width * (plane->height + 1) / 2) * 8], plane->genVertices[(plane->width * (plane->height + 1) / 2) * 8 + 1] + 1.0f, plane->genVertices[(plane->width * (plane->height + 1) / 2) * 8 + 2]);
+		camera->kinematic.pos = glm::vec3(plane->genVertices[0], plane->genVertices[1] + 1.0f, plane->genVertices[2]);
 		entities = { camera, plane, light, block };
 	}
 

@@ -23,7 +23,7 @@ public:
 
 	void generateVertices() {
 		int width, height, nrChannels;
-		unsigned char* loadedNoise = stbi_load("C:/Users/User/source/repos/FTGFW/FTGFW/textures/Perlin_noise_example.png", &width, &height, &nrChannels, 1);
+		unsigned char* loadedNoise = stbi_load("./Textures/Perlin_noise_example.png", &width, &height, &nrChannels, 1);
 		this->width = width;
 		this->height = height;
 		if (!loadedNoise) {

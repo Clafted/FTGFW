@@ -42,6 +42,7 @@ vec3 calculatePointLight(PointLight light, vec3 diffuseColor, vec3 specularColor
 vec3 calculteSpotLight(vec4 texelColor);
 
 void main() {
+    
     vec3 diffuseColor = texture(material.u_diffuseMap, texCoord).rgb;
     vec3 specularColor = texture(material.u_specularMap, texCoord).rgb;
     vec3 pointLightsColor = vec3(0.0);
