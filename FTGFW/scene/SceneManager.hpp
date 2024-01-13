@@ -33,9 +33,10 @@ public:
 	}
 
 	inline void setScene(std::string name) {
-		if (scenes.find(name) != scenes.end()) {
-			if(currentScene) currentScene->exitScene();
-			std::cout << "\nFound scene. Switching to scene: " << name;
+		// Switch only if the new scene is different
+		if (scenes.find(name) != scenes.end() && currentScene != scenes.find(name)->second) {
+			if (currentScene) currentScene->exitScene();
+			std::cout << "\nFound scene. Switching to scene: " << name << std::endl;
 			currentScene = scenes.find(name)->second;
 			currentScene->setupScene();
 		}
