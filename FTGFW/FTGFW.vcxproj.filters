@@ -27,22 +27,13 @@
     <ClCompile Include="scene\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="third_party\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="third_party\stb_image.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Demo</Filter>
     </ClCompile>
     <ClCompile Include="component\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="openGLObjects\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scene\Scene.cpp">
@@ -51,25 +42,13 @@
     <ClCompile Include="scene\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FTGFWProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Textures\Brick_Texture.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="openGLObjects\MissingTexture.png">
       <Filter>Header Files</Filter>
-    </Image>
-    <Image Include="textures\container2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="textures\container2_specular.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="textures\Perlin_noise_example.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="textures\PlainGrass.png">
-      <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -100,15 +79,6 @@
     <ClInclude Include="third_party\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Demo\Block.hpp">
-      <Filter>Demo</Filter>
-    </ClInclude>
-    <ClInclude Include="Demo\DefaultScene.hpp">
-      <Filter>Demo</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="component\Component.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -130,22 +100,19 @@
     <ClInclude Include="scene\SceneManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="openGLObjects\GLIncludes.hpp">
+    <ClInclude Include="third_party\GLIncludes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="openGLObjects\EBO.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Demo\LandGenerationScene.hpp">
-      <Filter>Demo</Filter>
-    </ClInclude>
-    <ClInclude Include="Demo\ProceduralPlane.hpp">
-      <Filter>Demo</Filter>
-    </ClInclude>
     <ClInclude Include="scene\Renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scene\LightCasters.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTGFWProgram.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

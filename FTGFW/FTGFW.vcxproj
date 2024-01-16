@@ -27,26 +27,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -71,8 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>third_party\include;third_party\GLAD\include;third_party\glm</IncludePath>
-    <LibraryPath>third_party\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\OpenGLStuff\glm;C:\OpenGLStuff\GLAD;C:\OpenGLStuff;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\OpenGLStuff\libraries\lib;$(WindowsSDK_LibraryPath_x86);$(VC_LibraryPath_x86)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\OpenGLStuff\glm;C:\OpenGLStuff\GLAD;C:\OpenGLStuff;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\OpenGLStuff\libraries\lib;$(WindowsSDK_LibraryPath_x86);$(VC_LibraryPath_x86)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\OpenGLStuff\glm;C:\OpenGLStuff\GLAD;C:\OpenGLStuff;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\OpenGLStuff\libraries\lib;$(WindowsSDK_LibraryPath_x86);$(VC_LibraryPath_x86)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\OpenGLStuff\glm;C:\OpenGLStuff\GLAD;C:\OpenGLStuff;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\OpenGLStuff\libraries\lib;$(WindowsSDK_LibraryPath_x86);$(VC_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -85,6 +97,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -101,6 +116,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -114,6 +132,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -130,39 +151,31 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="component\Component.cpp" />
     <ClCompile Include="FTGFWProgram.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="openGLObjects\Texture.cpp" />
     <ClCompile Include="scene\Entity.cpp" />
     <ClCompile Include="scene\Renderer.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="scene\SceneManager.cpp" />
-    <ClCompile Include="third_party\glad.c" />
     <ClCompile Include="third_party\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="openGLObjects\MissingTexture.png" />
-    <Image Include="Textures\Brick_Texture.png" />
-    <Image Include="textures\container2.png" />
-    <Image Include="textures\container2_specular.png" />
-    <Image Include="textures\Perlin_noise_example.png" />
-    <Image Include="textures\PlainGrass.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="component\Component.hpp" />
     <ClInclude Include="component\ControllerComponent.hpp" />
     <ClInclude Include="component\KinematicComponent.hpp" />
     <ClInclude Include="component\RenderComponent.hpp" />
-    <ClInclude Include="Demo\Block.hpp" />
-    <ClInclude Include="Demo\DefaultScene.hpp" />
-    <ClInclude Include="Demo\LandGenerationScene.hpp" />
-    <ClInclude Include="Demo\ProceduralPlane.hpp" />
     <ClInclude Include="FTGFWProgram.hpp" />
     <ClInclude Include="openGLObjects\EBO.hpp" />
-    <ClInclude Include="openGLObjects\GLIncludes.hpp" />
+    <ClInclude Include="third_party\GLIncludes.hpp" />
     <ClInclude Include="openGLObjects\OpenGLObject.hpp" />
     <ClInclude Include="openGLObjects\Texture.hpp" />
     <ClInclude Include="openGLObjects\VAO.hpp" />

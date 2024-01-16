@@ -1,5 +1,5 @@
 #include "Renderer.hpp"
-#include "../openGLObjects/GLIncludes.hpp"
+#include "../third_party/GLIncludes.hpp"
 
 Renderer* Renderer::instance = nullptr;
 

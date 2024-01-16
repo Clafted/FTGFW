@@ -1,4 +1,8 @@
 #include "FTGFWProgram.hpp"
+#include "third_party/GLIncludes.hpp"
+#include "scene/Scene.hpp"
+#include "scene/SceneManager.hpp"
+#include "scene/Renderer.hpp"
 
 FTGFWProgram* FTGFWProgram::instance = nullptr;
 
@@ -21,6 +25,11 @@ int FTGFWProgram::initRenderLoop(std::string startingScene) {
 		frameCount++;
 	}
 	return 0;
+}
+
+void FTGFWProgram::frameBufferSizeCallback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+	SceneManager::Instance()->getCurrentScene()->setScreenDimensions(width, height);
 }
 
 int FTGFWProgram::glfwSetup() {

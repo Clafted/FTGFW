@@ -2,7 +2,7 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "../openGLObjects/GLIncludes.hpp"
+#include "../third_party/GLIncludes.hpp"
 
 class Component {
 public:

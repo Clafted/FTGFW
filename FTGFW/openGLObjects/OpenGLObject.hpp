@@ -3,7 +3,7 @@
 #define OPENGLOBJECT_H
 
 #include <iostream>
-#include "GLIncludes.hpp"
+#include "../third_party/GLIncludes.hpp"
 
 /* 
  * The OpenGLObject interface creates an inheritance

@@ -1,7 +1,7 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include "../openGLObjects/GLIncludes.hpp"
+#include "../third_party/GLIncludes.hpp"
 #include "glm/ext.hpp"
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"

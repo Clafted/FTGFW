@@ -3,12 +3,6 @@
 #define FTGFWPROGRAM_H
 
 #include <iostream>
-
-#include "./openGLObjects/GLIncludes.hpp"
-#include "scene/Scene.hpp"
-#include "scene/SceneManager.hpp"
-#include "scene/Renderer.hpp"
-
 /**
  * A Singleton class to manage the life-cycle of the FTGFW program.
  * 
@@ -39,7 +33,9 @@ public:
 	/* Initializes GLFW and GLAD
 	* 
 	* @returns -1 if there are any issues in initializing GLAD or GLFW, 0 otherwise. */
-	int initProgram() {
+	int initProgram(int screenWidth, int screenHeight) {
+		this->screenWidth = screenWidth;
+		this->screenHeight = screenHeight;
 		return ((glfwSetup() == -1 || gladSetup() == -1) ? -1 : 0);
 	}
 
@@ -55,10 +51,7 @@ private:
 
 	FTGFWProgram() {}
 
-	static void frameBufferSizeCallback(GLFWwindow* window, int width, int height) {
-		glViewport(0, 0, width, height);
-		SceneManager::Instance()->getCurrentScene()->setScreenDimensions(width, height);
-	}
+	static void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
 	int glfwSetup();
 	int gladSetup();
 };
