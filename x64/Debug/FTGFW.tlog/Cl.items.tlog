@@ -1,0 +1,9 @@
+C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\component\Component.cpp;C:\Users\User\Source\Repos\FTGFW\FTGFW\x64\Debug\Component.obj
+C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\component\InputManager.cpp;C:\Users\User\Source\Repos\FTGFW\FTGFW\x64\Debug\InputManager.obj
+C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\FTGFWProgram.cpp;C:\Users\User\Source\Repos\FTGFW\FTGFW\x64\Debug\FTGFWProgram.obj
+C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\openGLObjects\Texture.cpp;C:\Users\User\Source\Repos\FTGFW\FTGFW\x64\Debug\Texture.obj
+C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\scene\Renderer.cpp;C:\Users\User\Source\Repos\FTGFW\FTGFW\x64\Debug\Renderer.obj
+C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\scene\Scene.cpp;C:\Users\User\Source\Repos\FTGFW\FTGFW\x64\Debug\Scene.obj
+C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\scene\SceneManager.cpp;C:\Users\User\Source\Repos\FTGFW\FTGFW\x64\Debug\SceneManager.obj
+C:\Users\User\Source\Repos\FTGFW\FTGFW\third_party\CopiedFiles\glad.c;C:\Users\User\Source\Repos\FTGFW\FTGFW\x64\Debug\glad.obj
+C:\Users\User\Source\Repos\FTGFW\FTGFW\third_party\stb_image.cpp;C:\Users\User\Source\Repos\FTGFW\FTGFW\x64\Debug\stb_image.obj

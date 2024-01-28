@@ -1,0 +1,8 @@
+﻿  FTGFWProgram.cpp
+C:\Users\User\source\repos\FTGFW\FTGFW\scene\Scene.hpp(28,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FTGFWProgram.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\scene\Scene.hpp(28,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FTGFWProgram.cpp')
+  
+  FTGFW.vcxproj -> C:\Users\User\Source\Repos\FTGFW\x64\Release\FTGFW.lib
