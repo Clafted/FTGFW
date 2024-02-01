@@ -47,6 +47,9 @@ public:
 	virtual inline void update(GLFWwindow * window) {
 		for (Entity* entity : entities) {
 			entity->update(window);
+			for (Component* component : entity->getComponents()) {
+				component->update(window);
+			}
 		}
 	}
 

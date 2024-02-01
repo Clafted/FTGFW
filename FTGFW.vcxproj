@@ -156,9 +156,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FTGFWProgram\component\Component.cpp" />
     <ClCompile Include="FTGFWProgram\component\InputManager.cpp" />
     <ClCompile Include="FTGFWProgram\FTGFWProgram.cpp" />
+    <ClCompile Include="FTGFWProgram\managers\CollisionManager.cpp" />
     <ClCompile Include="FTGFWProgram\openGLObjects\Texture.cpp" />
     <ClCompile Include="FTGFWProgram\scene\Renderer.cpp" />
     <ClCompile Include="FTGFWProgram\scene\Scene.cpp" />
@@ -175,6 +175,7 @@
     <ClInclude Include="FTGFWProgram\data\NativeShapes.hpp" />
     <ClInclude Include="FTGFWProgram\data\Vertex.hpp" />
     <ClInclude Include="FTGFWProgram\FTGFWProgram.hpp" />
+    <ClInclude Include="FTGFWProgram\managers\CollisionManager.hpp" />
     <ClInclude Include="FTGFWProgram\openGLObjects\EBO.hpp" />
     <ClInclude Include="third_party\GLIncludes.hpp" />
     <ClInclude Include="FTGFWProgram\openGLObjects\OpenGLObject.hpp" />

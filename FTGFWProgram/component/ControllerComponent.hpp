@@ -34,7 +34,8 @@ public:
 	 * @param target - the object on which the inputHandler() method will be called
 	 * @param inputHandler - the class method of type T to be called when checking for inputs
 	 */
-	ControllerComponent(T* target, inputHandleFunction inputHandler) {
+	ControllerComponent(const char * entityName, const char* entityTag, T* target, inputHandleFunction inputHandler) 
+	: Component(entityName, entityTag) {
 		this->target = target;
 		this->inputHandler = inputHandler;
 	}

@@ -15,17 +15,18 @@ public:
     PointLight light;
 
 	Light(glm::vec3 pos = glm::vec3(0.0f), glm::vec3 lightColor = glm::vec3(1.0f), float intensity = 1.0f)
-	    : light(pos, lightColor, intensity) {
-
-        render = RenderComponent(NativeShapes::Cube::vertices,
-								NativeShapes::Cube::indices,
-								sizeof(NativeShapes::Cube::vertices),
-								sizeof(NativeShapes::Cube::indices),
-								GL_DYNAMIC_DRAW,
-								"C:/Users/User/source/repos/FTGFW/Bubble/textures/flat_specular.png",
-								"C:/Users/User/source/repos/FTGFW/Bubble/textures/flat_specular.png");
-        kinematic.pos = pos;
-        components = { &kinematic, &render };
+	    : Entity("Light", "Light"), 
+		  light(pos, lightColor, intensity),
+		  kinematic(name, tag, pos, glm::vec3(0.0f), 1.0f, 1.0f),
+		  render(name, tag, NativeShapes::Cube::vertices,
+				NativeShapes::Cube::indices,
+				sizeof(NativeShapes::Cube::vertices),
+				sizeof(NativeShapes::Cube::indices),
+				GL_DYNAMIC_DRAW,
+				"C:/Users/User/source/repos/FTGFW/Bubble/textures/flat_specular.png",
+				"C:/Users/User/source/repos/FTGFW/Bubble/textures/flat_specular.png")
+	{
+		components = { &kinematic, &render };
 	}
 	~Light() {}
 

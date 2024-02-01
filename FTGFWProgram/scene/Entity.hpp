@@ -2,18 +2,17 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "../component/Component.hpp"
 #include "../../third_party/GLIncludes.hpp"
+#include "../component/Component.hpp"
 #include <vector>
 
 class Entity {
 public:
-	std::vector<Component*> components;
+	const char* name = "";
+	const char* tag = "";
 
-	Entity() {};
-	~Entity() {
-		components.clear();
-	};
+	Entity(const char* name, const char* tag) : name(name), tag(tag) {};
+	~Entity() {};
 
 	/* Updates components and other necessary parts of the Entity
 	 * 
@@ -23,14 +22,14 @@ public:
 		deltaTime = glfwGetTime() - previousTime / 1000.0;
 		if (deltaTime > 0.15) deltaTime = 0.15;
 		previousTime = glfwGetTime();
-
-		for (Component* component : components) {
-			component->update(window);
-		}
 	}
+
+	virtual void handleCollisionWith(Entity& other) {};
+	inline const std::vector<Component*>& getComponents() { return components; }
 
 protected:
 	double deltaTime = 0.0f, previousTime = 0.0f;
+	std::vector <Component*> components = {};
 };
 
 #endif

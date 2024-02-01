@@ -31,16 +31,13 @@ public:
 	Texture diffuseMap;
 	Texture specularMap;
 
-	glm::vec3 modelPos;
-	glm::vec3 rotationAxis;
-	glm::vec3 scale;
-	float rotationAngle;
+	glm::vec3 modelPos = glm::vec3(0.0f);
+	glm::vec3 rotationAxis = glm::vec3(0.0f, 1.0f, 0.0f);
+	glm::vec3 scale = glm::vec3(1.0f);
+	float rotationAngle = 0.0f;
 
-	RenderComponent()
-		: modelPos(0.0f),
-		  rotationAxis(0.0f, 1.0f, 0.0f),
-		  scale(1.0f),
-		  rotationAngle(0.0f) {}
+	RenderComponent(const char* entityName, const char* entityTag)
+		: Component(entityName, entityTag) {}
 
 	/**
 	 * A Constructor for the RenderComponent class
@@ -56,8 +53,8 @@ public:
 	 * @param sizeOfVertices - the size of the array of vertices
 	 * @param sizeOfIndices - the size of the array of indices
 	 * @param usage - how the vertices will be rendered */
-	RenderComponent(const void* vertices, const void* indices, GLsizeiptr sizeOfVertices, GLsizeiptr sizeOfIndices, GLenum usage, std::string diffusePath = Texture::defaultPath, std::string specularPath = Texture::defaultPath) 
-		: RenderComponent() {
+	RenderComponent(const char* entityName, const char* entityTag, const void* vertices, const void* indices, GLsizeiptr sizeOfVertices, GLsizeiptr sizeOfIndices, GLenum usage, std::string diffusePath = Texture::defaultPath, std::string specularPath = Texture::defaultPath) 
+		: Component(entityName, entityTag) {
 
 		vao.bindObject();
 		ebo = EBO(indices, sizeOfIndices, usage);

@@ -14,8 +14,9 @@ public:
 	ControllerComponent<DroneCamera> controller = ControllerComponent<DroneCamera>(this, &DroneCamera::inputHandler);
 
 	DroneCamera(float screenWidth, float screenHeigth, float fov = 45.0f, float near = 0.1f, float far = 100.0f) 
-		: Camera(screenWidth, screenHeigth, fov, near, far) {
-		components.push_back(&controller);
+		: Camera(screenWidth, screenHeigth, fov, near, far) 
+	{
+		components = { &controller };
 	}
 
 	void inputHandler(GLFWwindow* window, double mouseMoveX, double mouseMoveY) {

@@ -4,6 +4,8 @@
 #include "scene/SceneManager.hpp"
 #include "scene/Renderer.hpp"
 #include "component/InputManager.hpp"
+#include "component/Component.hpp"
+#include "managers/CollisionManager.hpp"
 
 FTGFWProgram* FTGFWProgram::instance = nullptr;
 InputManager* InputManager::instance = nullptr;
@@ -16,6 +18,7 @@ int FTGFWProgram::initProgram(int screenWidth, int screenHeight, const char* win
 	Renderer::Instance();
 	SceneManager::Instance();
 	InputManager::Instance();
+	CollisionManager::getInstance();
 	this->screenWidth = screenWidth;
 	this->screenHeight = screenHeight;
 	return ((glfwSetup(windowName) == -1 || gladSetup() == -1) ? -1 : 0);
@@ -25,7 +28,7 @@ void FTGFWProgram::terminate() {
 	SceneManager::terminate();
 	Renderer::terminate();
 	InputManager::terminate();
-	
+	CollisionManager::terminate();
 	delete instance;
 }
 
@@ -46,6 +49,7 @@ int FTGFWProgram::initRenderLoop(const char* startingScene, const char* vertexSh
 		glfwPollEvents();
 		InputManager::Instance()->update();
 		sceneManager->getCurrentScene()->update(window);
+		CollisionManager::getInstance()->checkCollisions();
 		renderer->updateMatrices(sceneManager->getCurrentScene()->camera->lookAt(), sceneManager->getCurrentScene()->camera->projectionMatrix, sceneManager->getCurrentScene()->camera->kinematic.pos);
 		renderer->renderFrame(window);
 

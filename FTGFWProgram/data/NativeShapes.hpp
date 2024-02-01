@@ -28,20 +28,26 @@ namespace NativeShapes {
             7, 6, 2,
             7, 2, 3
         };
+
+        const size_t verticesSize = sizeof(vertices);
+        const size_t indicesSize = sizeof(indices);
 	};
 
 	namespace FlatPlane {
         const float vertices[32] = {
-        -1.0f,  1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-         1.0f,  1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-        -1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-         1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f
+        -0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+         0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+         0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f
         };
 
         const int indices[6] = {
             0, 1, 2,
             1, 2, 3
         };
+        
+        const size_t verticesSize = sizeof(vertices);
+        const size_t indicesSize = sizeof(indices);
 	};
 };
 

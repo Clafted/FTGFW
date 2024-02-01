@@ -18,19 +18,20 @@
  */
 class Camera : public Entity{
 public:
-	KinematicComponent kinematic;
+	KinematicComponent kinematic = KinematicComponent(name, tag);
 	glm::mat4 projectionMatrix;
 	float fov;
 	float near, far;
 
-	Camera(int screenWidth, int screenHeight, float fov = 45.0f, float near = 0.1f, float far = 100.0f)
-		: projectionMatrix(glm::perspective(fov, screenWidth / (float) screenHeight, near, far)),
+	inline Camera(int screenWidth, int screenHeight, float fov = 45.0f, float near = 0.1f, float far = 100.0f)
+		: Entity("Camera", "Camera"),
+		  projectionMatrix(glm::perspective(fov, screenWidth / (float)screenHeight, near, far)),
 		  fov(fov),
 		  near(near),
-		  far(far) {
-
-		components.push_back(&kinematic);
-	};
+		  far(far)
+	{
+		components = { &kinematic };
+	}
 	~Camera() {};
 
 	/**
