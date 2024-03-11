@@ -3,6 +3,8 @@
 #define VBO_H
 
 #include "OpenGLObject.hpp"
+#include "../data/Vertex.hpp"
+#include <vector>
 
 /** 
  * The VBO class simpilifies the use of OpenGL Vertex Array Objects
@@ -24,6 +26,7 @@ public:
 		glEnableVertexAttribArray(2);
 		setVertices(vertices, size, usage);
 	}
+	
 	~VBO() {}
 
 	inline void bindObject() { 

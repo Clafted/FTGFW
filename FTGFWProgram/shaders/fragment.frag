@@ -26,15 +26,23 @@ struct DirectionalLight {
 };
 
 struct Material {
-    sampler2D u_diffuseMap;
-    sampler2D u_specularMap;
+    sampler2D diffuseMap0;
+    sampler2D diffuseMap1;
+    sampler2D diffuseMap2;
+    sampler2D diffuseMap3;
+    sampler2D diffuseMap4;
+    sampler2D specularMap0;
+    sampler2D specularMap1;
+    sampler2D specularMap2;
+    sampler2D specularMap3;
+    sampler2D specularMap4;
     float shininess;
 };
 
 #define NUM_POINT_LIGHTS 4
 uniform PointLight pointLights[NUM_POINT_LIGHTS];
-uniform DirectionalLight dirLight = DirectionalLight(vec3(0.4, -0.1, 0.0), vec3(1.0, 0.93, 0.8), 2.0, 0.5, 0.5, 0.5);
-uniform Material material;
+uniform DirectionalLight dirLight = DirectionalLight(vec3(0.0, -1.0, 0.0), vec3(1.0, 1.0, 1.0), 1.0, 1, 1, 0);
+uniform Material u_material;
 uniform vec3 cameraPos;
 
 vec3 calculateDirectionalLight(vec3 diffuseColor, vec3 specularColor);
@@ -42,17 +50,15 @@ vec3 calculatePointLight(PointLight light, vec3 diffuseColor, vec3 specularColor
 vec3 calculteSpotLight(vec4 texelColor);
 
 void main() {
-    vec4 diffuseColor = texture(material.u_diffuseMap, texCoord);
-    vec3 specularColor = texture(material.u_specularMap, texCoord).rgb;
+    vec4 diffuseColor = texture(u_material.diffuseMap0, texCoord);
+    vec3 specularColor = texture(u_material.specularMap0, texCoord).rgb;
     vec3 pointLightsColor = vec3(0.0);
 
     if (diffuseColor.a <= 0.0) discard;
-
     for (int i = 0; i < NUM_POINT_LIGHTS; i++)
         pointLightsColor += calculatePointLight(pointLights[i], diffuseColor.rgb, specularColor);
 
-    FragColor = vec4((calculateDirectionalLight(diffuseColor.rgb, specularColor) + pointLightsColor), diffuseColor.a);
-               // + calculteSpotLight(texelColor);
+    FragColor = vec4((calculateDirectionalLight(diffuseColor.rgb, specularColor) + pointLightsColor), diffuseColor.a); // + calculteSpotLight(texelColor);
 }
 
 /**
@@ -71,7 +77,7 @@ vec3 calculateDirectionalLight(vec3 diffuseColor, vec3 specularColor) {
     // Calculate specular lighting
     eyePos = normalize(cameraPos - fragmentPos);
     reflectionDirection = reflect(normalize(dirLight.direction), normal);
-    specular = pow(max(0.0, dot(eyePos, reflectionDirection)), material.shininess);        // Shininess is set to 65
+    specular = pow(max(0.0, dot(eyePos, reflectionDirection)), u_material.shininess);        // Shininess is set to 65
     
     ambientValue = dirLight.ambientStrength * diffuseColor;
     diffuseValue = dirLight.diffuseStrength * diffuseColor * diffuse;
@@ -89,14 +95,21 @@ vec3 calculatePointLight(PointLight light, vec3 diffuseColor, vec3 specularColor
     float dist;
     float attenuation;
     float diffuse, specular;
-
+    
     lightDirection = normalize(light.pos - fragmentPos);
     // Calculate the diffuse factor
-    diffuse = max(0.0, dot(normal, lightDirection));
+    float dotProduct = dot(normal, lightDirection);
+    if (dotProduct < 0.50) {
+    dotProduct = 0.15;
+    } else {
+    dotProduct = 0.75;
+    }
+
+    diffuse = max(0.0, dotProduct);
     // Calculate the specular factor
     viewDirection = normalize(cameraPos - fragmentPos);
     reflectionDirection = reflect(-lightDirection, normal);
-    specular = pow(max(dot(viewDirection, reflectionDirection), 0.0), material.shininess);
+    specular = pow(max(dot(viewDirection, reflectionDirection), 0.0), u_material.shininess);
     // Calculate attenuation
     dist = length(light.pos - fragmentPos);
     attenuation = 1.0 / (1.0 + 0.07 * dist + 0.017 * pow(dist, 2));

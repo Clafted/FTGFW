@@ -21,7 +21,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FTGFWProgram\scene\SceneManager.cpp">
+    <ClCompile Include="FTGFWProgram\managers\SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="third_party\stb_image.cpp">
@@ -33,7 +33,7 @@
     <ClCompile Include="FTGFWProgram\scene\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FTGFWProgram\scene\Renderer.cpp">
+    <ClCompile Include="FTGFWProgram\systems\RenderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FTGFWProgram\FTGFWProgram.cpp">
@@ -42,10 +42,31 @@
     <ClCompile Include="third_party\CopiedFiles\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FTGFWProgram\component\InputManager.cpp">
+    <ClCompile Include="FTGFWProgram\systems\ControllerSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FTGFWProgram\managers\CollisionManager.cpp">
+    <ClCompile Include="FTGFWProgram\systems\CollisionSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FTGFWProgram\modelLoading\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FTGFWProgram\systems\KinematicSystem.hpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FTGFWProgram\systems\KinematicSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FTGFWProgram\managers\SystemManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FTGFWProgram\systems\System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FTGFWProgram\managers\EntityManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FTGFWProgram\systems\CameraSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +80,7 @@
     <ClInclude Include="FTGFWProgram\scene\Scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\scene\Camera.hpp">
+    <ClInclude Include="FTGFWProgram\component\CameraComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FTGFWProgram\openGLObjects\OpenGLObject.hpp">
@@ -89,13 +110,10 @@
     <ClInclude Include="FTGFWProgram\component\RenderComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\scene\DroneCamera.hpp">
+    <ClInclude Include="FTGFWProgram\component\DroneControllerComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\scene\Light.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\scene\SceneManager.hpp">
+    <ClInclude Include="FTGFWProgram\managers\SceneManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="third_party\GLIncludes.hpp">
@@ -104,10 +122,10 @@
     <ClInclude Include="FTGFWProgram\openGLObjects\EBO.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\scene\Renderer.hpp">
+    <ClInclude Include="FTGFWProgram\systems\RenderSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\scene\LightCasters.hpp">
+    <ClInclude Include="FTGFWProgram\component\LightComponents.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FTGFWProgram\FTGFWProgram.hpp">
@@ -119,10 +137,31 @@
     <ClInclude Include="FTGFWProgram\data\NativeShapes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\component\InputManager.hpp">
+    <ClInclude Include="FTGFWProgram\systems\ControllerSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\managers\CollisionManager.hpp">
+    <ClInclude Include="FTGFWProgram\systems\CollisionSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTGFWProgram\modelLoading\Model.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTGFWProgram\systems\System.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTGFWProgram\managers\SystemManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTGFWProgram\managers\EntityManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTGFWProgram\managers\ComponentManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTGFWProgram\systems\CameraSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTGFWProgram\component\TwoDimensional_C.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -133,5 +172,6 @@
     <None Include="FTGFWProgram\shaders\fragment.frag">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="third_party\assimp-vc143-mtd.dll" />
   </ItemGroup>
 </Project>

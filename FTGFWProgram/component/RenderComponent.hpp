@@ -13,6 +13,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
+#include <string>
 
 /*
  * The RenderComponent class represents anything that can be rendered.
@@ -22,22 +23,24 @@
  * 
  * @author Noah Perez
  */
-class RenderComponent : public Component{
+struct RenderComponent : public Component{
 public:
 	std::vector<OpenGLObject*> glObjects = {};
-	VBO vbo;
-	VAO vao;
-	EBO ebo;
-	Texture diffuseMap;
-	Texture specularMap;
-
+	std::vector<Texture> textures = {};
 	glm::vec3 modelPos = glm::vec3(0.0f);
 	glm::vec3 rotationAxis = glm::vec3(0.0f, 1.0f, 0.0f);
 	glm::vec3 scale = glm::vec3(1.0f);
+	VBO vbo;
+	VAO vao;
+	EBO ebo;
 	float rotationAngle = 0.0f;
 
-	RenderComponent(const char* entityName, const char* entityTag)
-		: Component(entityName, entityTag) {}
+	RenderComponent(std::vector<float> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures) {
+		vao.bindObject();
+		ebo = EBO(&indices[0], indices.size() * sizeof(unsigned int), GL_DYNAMIC_DRAW);
+		vbo = VBO(&vertices[0], vertices.size() * sizeof(float), GL_DYNAMIC_DRAW);
+		this->textures = textures;
+	}
 
 	/**
 	 * A Constructor for the RenderComponent class
@@ -53,9 +56,7 @@ public:
 	 * @param sizeOfVertices - the size of the array of vertices
 	 * @param sizeOfIndices - the size of the array of indices
 	 * @param usage - how the vertices will be rendered */
-	RenderComponent(const char* entityName, const char* entityTag, const void* vertices, const void* indices, GLsizeiptr sizeOfVertices, GLsizeiptr sizeOfIndices, GLenum usage, std::string diffusePath = Texture::defaultPath, std::string specularPath = Texture::defaultPath) 
-		: Component(entityName, entityTag) {
-
+	RenderComponent(const void* vertices, const void* indices, GLsizeiptr sizeOfVertices, GLsizeiptr sizeOfIndices, std::string diffusePath = Texture::defaultPath, std::string specularPath = Texture::defaultPath, GLenum usage = GL_DYNAMIC_DRAW) {
 		vao.bindObject();
 		ebo = EBO(indices, sizeOfIndices, usage);
 		vbo = VBO(vertices, sizeOfVertices, usage);
@@ -65,11 +66,12 @@ public:
 		glActiveTexture(GL_TEXTURE1);
 		setSpecularMap(specularPath.c_str());
 		
-		glObjects = { &vao, &vbo, &ebo, &diffuseMap, &specularMap };
+		glObjects = { &vao, &vbo, &ebo };
 	}
 
 	~RenderComponent() {
 		glObjects.clear();
+		textures.clear();
 	}
 	/* Get the ID of the VAO of the renderable component
 	 * 
@@ -82,17 +84,15 @@ public:
 	 * 
 	 * @param path - the path to the diffuseMap */
 	void setDiffuseMap(std::string path) {
-		diffuseMap.createTexture(path.c_str());
+		textures.push_back(Texture(path.c_str(), Texture::DIFFUSE));
 	}
 
 	/* Set the specular map of the RenderComponent.
 	 *
 	 * @param path - the path to the specular map*/
 	void setSpecularMap(std::string path) {
-		specularMap.createTexture(path.c_str());
+		textures.push_back(Texture(path.c_str(), Texture::SPECULAR));
 	}
-
-	void update(GLFWwindow * window) {};
 };
 
 #endif

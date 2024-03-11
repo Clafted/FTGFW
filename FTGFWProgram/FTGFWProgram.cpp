@@ -1,75 +1,62 @@
 #include "FTGFWProgram.hpp"
 #include "../third_party/GLIncludes.hpp"
-#include "scene/Scene.hpp"
-#include "scene/SceneManager.hpp"
-#include "scene/Renderer.hpp"
-#include "component/InputManager.hpp"
-#include "component/Component.hpp"
-#include "managers/CollisionManager.hpp"
-
-FTGFWProgram* FTGFWProgram::instance = nullptr;
-InputManager* InputManager::instance = nullptr;
+#include "systems/KinematicSystem.hpp"
+#include "systems/CameraSystem.hpp"
+#include "systems/CollisionSystem.hpp"
 
 FTGFWProgram::~FTGFWProgram() {
-	
+	glfwTerminate();
 }
 
 int FTGFWProgram::initProgram(int screenWidth, int screenHeight, const char* windowName) {
-	Renderer::Instance();
-	SceneManager::Instance();
-	InputManager::Instance();
-	CollisionManager::getInstance();
 	this->screenWidth = screenWidth;
 	this->screenHeight = screenHeight;
-	return ((glfwSetup(windowName) == -1 || gladSetup() == -1) ? -1 : 0);
+	if (glfwSetup(windowName) == -1 || gladSetup() == -1) return -1;
+	// Register Render and Controller Systems
+	systemManager.registerSystem(renderSystem);
+	systemManager.registerSystem(controllerSystem);
+	systemManager.registerSystem(std::make_shared<KinematicSystem>(componentManager, sceneManager));
+	systemManager.registerSystem(std::make_shared<CameraSystem>(componentManager, sceneManager));
+	systemManager.registerSystem(std::make_shared<CollisionSystem>(componentManager, sceneManager));
+
+	return 0;
 }
 
-void FTGFWProgram::terminate() {
-	SceneManager::terminate();
-	Renderer::terminate();
-	InputManager::terminate();
-	CollisionManager::terminate();
-	delete instance;
-}
-
-int FTGFWProgram::initRenderLoop(const char* startingScene, const char* vertexShaderPath, const char* fragmentShaderPath) {
-
-	renderer = Renderer::Instance();
-	renderer->addShader(vertexShaderPath, fragmentShaderPath);
-	if (renderer->shader == nullptr) return -1;
-	sceneManager = SceneManager::Instance();
-	sceneManager->setScene(startingScene);
-	sceneManager->getCurrentScene()->setScreenDimensions(screenWidth, screenHeight);
-	glEnable(GL_BLEND);
+int FTGFWProgram::initRenderLoop(std::string startingScene, std::string vertexShaderPath, std::string fragmentShaderPath) 
+{
+	sceneManager.setScene(startingScene);
+	renderSystem->addShader(vertexShaderPath, fragmentShaderPath);
 	// Start loop
 	// ---------------------------------------------------------------------------
-	while (!glfwWindowShouldClose(window)) {
-
-		// Take input and update 
+	while (!glfwWindowShouldClose(window)) 
+	{
+		// Update time variables
+		deltaTime = glfwGetTime() - previousTime;
+		previousTime = glfwGetTime();
+		if (deltaTime >= 0.15f) deltaTime = 0.15;
+		// Take input
 		glfwPollEvents();
-		InputManager::Instance()->update();
-		sceneManager->getCurrentScene()->update(window);
-		CollisionManager::getInstance()->checkCollisions();
-		renderer->updateMatrices(sceneManager->getCurrentScene()->camera->lookAt(), sceneManager->getCurrentScene()->camera->projectionMatrix, sceneManager->getCurrentScene()->camera->kinematic.pos);
-		renderer->renderFrame(window);
-
+		// Update all Systems
+		systemManager.update(window, deltaTime);
 		frameCount++;
 	}
-	
-	std::cout << "Terminating FTGFWProgram...\nRuntime: " << glfwGetTime() << "\nFPS: ~" << instance->frameCount / glfwGetTime();
-	glfwTerminate();
+	std::cout << "\nTerminating FTGFWProgram...\n"
+			  << "Runtime: " << glfwGetTime() << "\n"
+			  << "FPS: ~" << frameCount / glfwGetTime() << std::flush;	
+
 	return 0;
 }
 
 void FTGFWProgram::frameBufferSizeCallback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
-	SceneManager::Instance()->getCurrentScene()->setScreenDimensions(width, height);
 }
 
-int FTGFWProgram::glfwSetup(const char * windowName) {
+int FTGFWProgram::glfwSetup(const char * windowName) 
+{
 	// Initial GLFW configuration
 	// -----------------------------------------------------
-	if (glfwInit() == GLFW_FALSE) {
+	if (glfwInit() == GLFW_FALSE) 
+	{
 		std::cout << "Failed to initialize GLFW" << std::endl;
 		return -1;
 	}
@@ -79,7 +66,8 @@ int FTGFWProgram::glfwSetup(const char * windowName) {
 	// Create a GLFW window
 	// ----------------------------------------------------
 	window = glfwCreateWindow(screenWidth, screenHeight, windowName, NULL, NULL);
-	if (window == NULL) {
+	if (window == NULL) 
+	{
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 		return -1;
@@ -88,14 +76,14 @@ int FTGFWProgram::glfwSetup(const char * windowName) {
 	// Set callbacks
 	// -----------------------------------------------------
 	glfwSetFramebufferSizeCallback(window, frameBufferSizeCallback);
-	glfwSetMouseButtonCallback(window, InputManager::mouseButtonCallback);
-	glfwSetCursorPosCallback(window, InputManager::cursorPosCallback);
+	glfwSetMouseButtonCallback(window, ControllerSystem::mouseButtonCallback);
 	return 0;
 }
 
 int FTGFWProgram::gladSetup() {
 	// Initialize GLAD
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+	if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) 
+	{
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}

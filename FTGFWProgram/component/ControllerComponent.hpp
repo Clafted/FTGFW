@@ -3,8 +3,11 @@
 #define CONTOLLERCOMPONENT_H
 
 #include <vector>
+#include <unordered_map>
 #include "Component.hpp"
-#include "InputManager.hpp"
+#include "../managers/ComponentManager.hpp"
+#include "../../third_party/GLIncludes.hpp"
+#include "../scene/Entity.hpp"
 
 /**
  * A Component subclass to allow for user-input-controlled events.
@@ -15,38 +18,13 @@
  * to the instance which will be used to call the method of inputs.
  * 
  * @author Noah  */
-template <typename T>
-class ControllerComponent : public Component {
+struct ControllerComponent : public Component {
 public:
+
+	std::shared_ptr<Entity> entity;
 	bool enabled = true;
-	T* target;
-	double prevMouseX = 0.0f;
-	double prevMouseY = 0.0f;
-	double mousePosX = 0.0f;
-	double mousePosY = 0.0f;
-
-	using inputHandleFunction = void (T::*)(GLFWwindow* window, double mouseMoveX, double mouseMoveY);
-	inputHandleFunction inputHandler = nullptr;
-
-	/**
-	 * Constructor for ControllerComponent
-	 * 
-	 * @param target - the object on which the inputHandler() method will be called
-	 * @param inputHandler - the class method of type T to be called when checking for inputs
-	 */
-	ControllerComponent(const char * entityName, const char* entityTag, T* target, inputHandleFunction inputHandler) 
-	: Component(entityName, entityTag) {
-		this->target = target;
-		this->inputHandler = inputHandler;
-	}
-
-	void update(GLFWwindow* window) {
-		prevMouseX = mousePosX;
-		prevMouseY = mousePosY;
-		glfwGetCursorPos(window, &mousePosX, &mousePosY);
-		// Call the method of the target
-		(target->inputHandler)(window, -(mousePosX - prevMouseX), -(mousePosY - prevMouseY));
-	}
+	ControllerComponent(std::shared_ptr<Entity> entity) : entity(entity) {};
+	virtual void handleInput(ComponentManager& componentManager, GLFWwindow * window, std::unordered_map<int, int>& mouseButtons) = 0;
 };
 
 #endif

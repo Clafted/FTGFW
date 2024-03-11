@@ -1,21 +1,25 @@
 #include "Texture.hpp"
 #include "../../third_party/stb_image.h"
 
-Texture::Texture(const char * path) {
+Texture::Texture(std::string path, TextureType type) : path(path), type(type) {
 	// Generate image data
 	glGenTextures(1, &ID);
 	bindObject();
 	createTexture(path);
 }
 
-void Texture::createTexture(const char * path) {
+void Texture::createTexture(std::string path) {
 	unsigned char* data;
 	bindObject();
 	// Generate image data
 	stbi_set_flip_vertically_on_load(true);
-	data = stbi_load(path, &width, &height, &nrChannels, 0);
+	std::cout << "\nLoading texture in path: " << path;
+	data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+	if (!data && path != "n/a") data = stbi_load((directory + path).c_str(), &width, &height, &nrChannels, 0);
+	if (!data) std::cout << "\nFailed to load texture with path: " << path << std::endl;
 	int format;
-	switch (nrChannels) {
+	switch (nrChannels) 
+	{
 	case 3:
 		format = GL_RGB;
 		break;
@@ -24,9 +28,6 @@ void Texture::createTexture(const char * path) {
 		break;
 	default:
 		format = GL_RGB;
-	}
-	if (!data && path != "n/a") {
-		std::cout << "Failed to load texture with path: " << path << std::endl;
 	}
 	// Apply the texture
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);

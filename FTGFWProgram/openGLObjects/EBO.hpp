@@ -9,7 +9,6 @@ public:
 	EBO() {};
 	EBO(const void* indices, GLsizeiptr size, GLenum usage) {
 		glGenBuffers(1, &ID);
-		bindObject();
 		setIndices(indices, size, usage);
 	}
 
