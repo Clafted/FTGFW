@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(IncludePath);C:\OpenGLStuff\glm;C:\OpenGLStuff\GLAD;C:\OpenGLStuff;C:\OpenGLStuff\assimp\assimp\include</IncludePath>
-    <LibraryPath>C:\OpenGLStuff\libraries\lib;C:\OpenGLStuff\assimp\assimp\lib\Debug;C:\OpenGLStuff\assimp\assimp\bin\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath);3rdParty\assimp\include;3rdParty\glfw\include;3rdParty\glad_khr;3rdParty\glm</IncludePath>
+    <LibraryPath>3rdParty\glfw\lib-vc2019;3rdParty\assimp\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(IncludePath);C:\OpenGLStuff\glm;C:\OpenGLStuff\GLAD;C:\OpenGLStuff;C:\OpenGLStuff\assimp\assimp\include</IncludePath>
-    <LibraryPath>C:\OpenGLStuff\libraries\lib;C:\OpenGLStuff\assimp\assimp\lib\Debug;C:\OpenGLStuff\assimp\assimp\bin\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath);3rdParty\assimp\include;3rdParty\glfw\include;3rdParty\glad_khr;3rdParty\glm</IncludePath>
+    <LibraryPath>3rdParty\glfw\lib-vc2019;3rdParty\assimp\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(IncludePath);C:\OpenGLStuff\glm;C:\OpenGLStuff\GLAD;C:\OpenGLStuff;C:\OpenGLStuff\assimp\assimp\include</IncludePath>
@@ -92,6 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,6 +110,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,6 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,7 +136,7 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3_mt.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,6 +147,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,63 +156,72 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3_mt.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FTGFWProgram\managers\EntityManager.cpp" />
-    <ClCompile Include="FTGFWProgram\systems\CameraSystem.cpp" />
-    <ClCompile Include="FTGFWProgram\systems\ControllerSystem.cpp" />
-    <ClCompile Include="FTGFWProgram\FTGFWProgram.cpp" />
-    <ClCompile Include="FTGFWProgram\systems\CollisionSystem.cpp" />
-    <ClCompile Include="FTGFWProgram\modelLoading\Model.cpp" />
-    <ClCompile Include="FTGFWProgram\openGLObjects\Texture.cpp" />
-    <ClCompile Include="FTGFWProgram\systems\RenderSystem.cpp" />
-    <ClCompile Include="FTGFWProgram\scene\Scene.cpp" />
-    <ClCompile Include="FTGFWProgram\managers\SceneManager.cpp" />
-    <ClCompile Include="FTGFWProgram\systems\KinematicSystem.cpp" />
-    <ClCompile Include="FTGFWProgram\systems\KinematicSystem.hpp" />
-    <ClCompile Include="FTGFWProgram\systems\System.cpp" />
-    <ClCompile Include="FTGFWProgram\managers\SystemManager.cpp" />
+    <ClCompile Include="3rdParty\glad.c" />
+    <ClCompile Include="include\managers\EntityManager.cpp" />
+    <ClCompile Include="include\systems\CameraSystem.cpp" />
+    <ClCompile Include="include\systems\ControllerSystem.cpp" />
+    <ClCompile Include="include\FTGFWProgram.cpp" />
+    <ClCompile Include="include\systems\CollisionSystem.cpp" />
+    <ClCompile Include="include\component\Model_C.cpp" />
+    <ClCompile Include="include\openGLObjects\Texture.cpp" />
+    <ClCompile Include="include\systems\KinematicSystem.cpp" />
+    <ClCompile Include="include\systems\RenderSystem.cpp" />
+    <ClCompile Include="include\scene\Scene.cpp" />
+    <ClCompile Include="include\managers\SceneManager.cpp" />
+    <ClCompile Include="include\systems\System.cpp" />
+    <ClCompile Include="include\managers\SystemManager.cpp" />
     <ClCompile Include="third_party\CopiedFiles\glad.c" />
     <ClCompile Include="third_party\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FTGFWProgram\component\Component.hpp" />
-    <ClInclude Include="FTGFWProgram\component\ControllerComponent.hpp" />
-    <ClInclude Include="FTGFWProgram\component\TwoDimensional_C.hpp" />
-    <ClInclude Include="FTGFWProgram\managers\ComponentManager.hpp" />
-    <ClInclude Include="FTGFWProgram\managers\EntityManager.hpp" />
-    <ClInclude Include="FTGFWProgram\systems\CameraSystem.hpp" />
-    <ClInclude Include="FTGFWProgram\systems\ControllerSystem.hpp" />
-    <ClInclude Include="FTGFWProgram\component\KinematicComponent.hpp" />
-    <ClInclude Include="FTGFWProgram\component\RenderComponent.hpp" />
-    <ClInclude Include="FTGFWProgram\data\NativeShapes.hpp" />
-    <ClInclude Include="FTGFWProgram\data\Vertex.hpp" />
-    <ClInclude Include="FTGFWProgram\FTGFWProgram.hpp" />
-    <ClInclude Include="FTGFWProgram\systems\CollisionSystem.hpp" />
-    <ClInclude Include="FTGFWProgram\modelLoading\Model.hpp" />
-    <ClInclude Include="FTGFWProgram\openGLObjects\EBO.hpp" />
-    <ClInclude Include="FTGFWProgram\systems\System.hpp" />
-    <ClInclude Include="FTGFWProgram\managers\SystemManager.hpp" />
+    <ClInclude Include="3rdParty\stb_image.h" />
+    <ClInclude Include="include\component\CollisionMask_C.hpp" />
+    <ClInclude Include="include\component\Component.hpp" />
+    <ClInclude Include="include\component\ControllerComponent.hpp" />
+    <ClInclude Include="include\component\TextureMap_C.hpp" />
+    <ClInclude Include="include\component\Text_C.hpp" />
+    <ClInclude Include="include\component\TwoDimensional_C.hpp" />
+    <ClInclude Include="include\managers\ComponentManager.hpp" />
+    <ClInclude Include="include\managers\EntityManager.hpp" />
+    <ClInclude Include="include\systems\CameraSystem.hpp" />
+    <ClInclude Include="include\systems\CollisionMaskSystem.hpp" />
+    <ClInclude Include="include\systems\ControllerSystem.hpp" />
+    <ClInclude Include="include\component\KinematicComponent.hpp" />
+    <ClInclude Include="include\component\RenderComponent.hpp" />
+    <ClInclude Include="include\data\NativeShapes.hpp" />
+    <ClInclude Include="include\data\Vertex.hpp" />
+    <ClInclude Include="include\FTGFWProgram.hpp" />
+    <ClInclude Include="include\systems\CollisionSystem.hpp" />
+    <ClInclude Include="include\component\Model_C.hpp" />
+    <ClInclude Include="include\openGLObjects\EBO.hpp" />
+    <ClInclude Include="include\systems\KinematicSystem.hpp" />
+    <ClInclude Include="include\systems\System.hpp" />
+    <ClInclude Include="include\managers\SystemManager.hpp" />
+    <ClInclude Include="include\openGLObjects\OpenGLObject.hpp" />
+    <ClInclude Include="include\openGLObjects\Texture.hpp" />
+    <ClInclude Include="include\openGLObjects\VAO.hpp" />
+    <ClInclude Include="include\openGLObjects\VBO.hpp" />
+    <ClInclude Include="include\component\CameraComponent.hpp" />
+    <ClInclude Include="include\component\DroneControllerComponent.hpp" />
+    <ClInclude Include="include\scene\Entity.hpp" />
+    <ClInclude Include="include\component\LightComponents.hpp" />
+    <ClInclude Include="include\systems\RenderSystem.hpp" />
+    <ClInclude Include="include\scene\Scene.hpp" />
+    <ClInclude Include="include\managers\SceneManager.hpp" />
+    <ClInclude Include="include\shaders\Shader.hpp" />
     <ClInclude Include="third_party\GLIncludes.hpp" />
-    <ClInclude Include="FTGFWProgram\openGLObjects\OpenGLObject.hpp" />
-    <ClInclude Include="FTGFWProgram\openGLObjects\Texture.hpp" />
-    <ClInclude Include="FTGFWProgram\openGLObjects\VAO.hpp" />
-    <ClInclude Include="FTGFWProgram\openGLObjects\VBO.hpp" />
-    <ClInclude Include="FTGFWProgram\component\CameraComponent.hpp" />
-    <ClInclude Include="FTGFWProgram\component\DroneControllerComponent.hpp" />
-    <ClInclude Include="FTGFWProgram\scene\Entity.hpp" />
-    <ClInclude Include="FTGFWProgram\component\LightComponents.hpp" />
-    <ClInclude Include="FTGFWProgram\systems\RenderSystem.hpp" />
-    <ClInclude Include="FTGFWProgram\scene\Scene.hpp" />
-    <ClInclude Include="FTGFWProgram\managers\SceneManager.hpp" />
-    <ClInclude Include="FTGFWProgram\shaders\Shader.hpp" />
     <ClInclude Include="third_party\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FTGFWProgram\shaders\fragment.frag" />
-    <None Include="FTGFWProgram\shaders\vertex.vert" />
+    <None Include="include\shaders\frag2D.frag" />
+    <None Include="include\shaders\fragment.frag" />
+    <None Include="include\shaders\hudVert.vert" />
+    <None Include="include\shaders\vert.vert" />
+    <None Include="include\shaders\vertex.vert" />
     <None Include="third_party\assimp-vc143-mtd.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

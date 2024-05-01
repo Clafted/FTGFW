@@ -1,26 +1,116 @@
-﻿  EntityManager.cpp
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1119,5): warning MSB8027: Two or more files with the name of glad.c will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are 3rdParty\glad.c, third_party\CopiedFiles\glad.c.
+  EntityManager.cpp
   CameraSystem.cpp
   ControllerSystem.cpp
   FTGFWProgram.cpp
-C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\FTGFWProgram.cpp(34,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\FTGFWProgram.cpp(35,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\User\Source\Repos\FTGFW\FTGFW\FTGFWProgram\FTGFWProgram.cpp(36,39): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244:         ]
+  (compiling source file 'include/FTGFWProgram.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244:         ]
+  (compiling source file 'include/FTGFWProgram.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244:         ]
+  (compiling source file 'include/FTGFWProgram.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244:         ]
+  (compiling source file 'include/FTGFWProgram.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244:         ]
+  (compiling source file 'include/FTGFWProgram.cpp')
+  
   CollisionSystem.cpp
-  Model.cpp
+  Model_C.cpp
   Texture.cpp
+  KinematicSystem.cpp
   RenderSystem.cpp
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(24,18): warning C4244:         ]
+  (compiling source file 'include/systems/RenderSystem.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(26,18): warning C4244:         ]
+  (compiling source file 'include/systems/RenderSystem.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(28,18): warning C4244:         ]
+  (compiling source file 'include/systems/RenderSystem.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(29,18): warning C4244:         ]
+  (compiling source file 'include/systems/RenderSystem.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\component\TextureMap_C.hpp(31,18): warning C4244:         ]
+  (compiling source file 'include/systems/RenderSystem.cpp')
+  
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(166,26): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(166,26): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(166,26): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(166,26): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(166,26): warning C4244:         ]
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(168,26): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(168,26): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(168,26): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(168,26): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(168,26): warning C4244:         ]
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(170,26): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(170,26): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(170,26): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(170,26): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(170,26): warning C4244:         ]
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(171,26): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(171,26): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(171,26): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(171,26): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(171,26): warning C4244:         ]
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(173,26): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(173,26): warning C4244:         with
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(173,26): warning C4244:         [
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(173,26): warning C4244:             T=float
+C:\Users\User\source\repos\FTGFW\FTGFW\include\systems\RenderSystem.cpp(173,26): warning C4244:         ]
   Scene.cpp
   SceneManager.cpp
-  KinematicSystem.cpp
-  KinematicSystem.hpp
   System.cpp
   SystemManager.cpp
-  stb_image.cpp
   Generating Code...
-  glad.c
-x64\Debug\KinematicSystem.obj : warning LNK4042: object specified more than once; extras ignored
+x64\Debug\glad.obj : warning LNK4042: object specified more than once; extras ignored
 assimp-vc143-mtd.lib(assimp-vc143-mtd.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
-Model.obj : warning LNK4006: "public: struct aiScene const * __cdecl Assimp::Importer::ReadFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int)" (?ReadFile@Importer@Assimp@@QEAAPEBUaiScene@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z) already defined in assimp-vc143-mtd.lib(assimp-vc143-mtd.dll); second definition ignored
-Model.obj : warning LNK4006: "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) already defined in assimp-vc143-mtd.lib(assimp-vc143-mtd.dll); second definition ignored
-Model.obj : warning LNK4006: "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z) already defined in assimp-vc143-mtd.lib(assimp-vc143-mtd.dll); second definition ignored
+Model_C.obj : warning LNK4006: "public: struct aiScene const * __cdecl Assimp::Importer::ReadFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int)" (?ReadFile@Importer@Assimp@@QEAAPEBUaiScene@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z) already defined in assimp-vc143-mtd.lib(assimp-vc143-mtd.dll); second definition ignored
+Model_C.obj : warning LNK4006: "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) already defined in assimp-vc143-mtd.lib(assimp-vc143-mtd.dll); second definition ignored
+Model_C.obj : warning LNK4006: "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z) already defined in assimp-vc143-mtd.lib(assimp-vc143-mtd.dll); second definition ignored
   FTGFW.vcxproj -> C:\Users\User\Source\Repos\FTGFW\x64\Debug\FTGFW.lib

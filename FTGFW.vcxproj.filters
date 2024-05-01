@@ -21,157 +21,178 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FTGFWProgram\managers\SceneManager.cpp">
+    <ClCompile Include="include\managers\SceneManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\openGLObjects\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\scene\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\systems\RenderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\FTGFWProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\systems\ControllerSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\systems\CollisionSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\component\Model_C.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\managers\SystemManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\systems\System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\managers\EntityManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\systems\CameraSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\systems\KinematicSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="third_party\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FTGFWProgram\openGLObjects\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\scene\Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\systems\RenderSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\FTGFWProgram.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="third_party\CopiedFiles\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FTGFWProgram\systems\ControllerSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\systems\CollisionSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\modelLoading\Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\systems\KinematicSystem.hpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\systems\KinematicSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\managers\SystemManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\systems\System.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\managers\EntityManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FTGFWProgram\systems\CameraSystem.cpp">
+    <ClCompile Include="3rdParty\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FTGFWProgram\shaders\Shader.hpp">
+    <ClInclude Include="include\shaders\Shader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\scene\Entity.hpp">
+    <ClInclude Include="include\scene\Entity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\scene\Scene.hpp">
+    <ClInclude Include="include\scene\Scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\component\CameraComponent.hpp">
+    <ClInclude Include="include\component\CameraComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\openGLObjects\OpenGLObject.hpp">
+    <ClInclude Include="include\openGLObjects\OpenGLObject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\openGLObjects\Texture.hpp">
+    <ClInclude Include="include\openGLObjects\Texture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\openGLObjects\VAO.hpp">
+    <ClInclude Include="include\openGLObjects\VAO.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\openGLObjects\VBO.hpp">
+    <ClInclude Include="include\openGLObjects\VBO.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="third_party\stb_image.h">
+    <ClInclude Include="include\component\Component.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\component\Component.hpp">
+    <ClInclude Include="include\component\ControllerComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\component\ControllerComponent.hpp">
+    <ClInclude Include="include\component\KinematicComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\component\KinematicComponent.hpp">
+    <ClInclude Include="include\component\RenderComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\component\RenderComponent.hpp">
+    <ClInclude Include="include\component\DroneControllerComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\component\DroneControllerComponent.hpp">
+    <ClInclude Include="include\managers\SceneManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\managers\SceneManager.hpp">
+    <ClInclude Include="include\openGLObjects\EBO.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\systems\RenderSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\component\LightComponents.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FTGFWProgram.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\Vertex.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\NativeShapes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\systems\ControllerSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\systems\CollisionSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\component\Model_C.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\systems\System.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\managers\SystemManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\managers\EntityManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\systems\CameraSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\component\TwoDimensional_C.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\systems\KinematicSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\component\TextureMap_C.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\component\Text_C.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="third_party\GLIncludes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\openGLObjects\EBO.hpp">
+    <ClInclude Include="third_party\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\systems\RenderSystem.hpp">
+    <ClInclude Include="include\managers\ComponentManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\component\LightComponents.hpp">
+    <ClInclude Include="include\component\CollisionMask_C.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\FTGFWProgram.hpp">
+    <ClInclude Include="include\systems\CollisionMaskSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTGFWProgram\data\Vertex.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\data\NativeShapes.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\systems\ControllerSystem.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\systems\CollisionSystem.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\modelLoading\Model.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\systems\System.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\managers\SystemManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\managers\EntityManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\managers\ComponentManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\systems\CameraSystem.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTGFWProgram\component\TwoDimensional_C.hpp">
+    <ClInclude Include="3rdParty\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FTGFWProgram\shaders\vertex.vert">
+    <None Include="include\shaders\vert.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="FTGFWProgram\shaders\fragment.frag">
+    <None Include="include\shaders\fragment.frag">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="include\shaders\hudVert.vert" />
+    <None Include="include\shaders\frag2D.frag" />
+    <None Include="include\shaders\vertex.vert" />
     <None Include="third_party\assimp-vc143-mtd.dll" />
   </ItemGroup>
 </Project>

@@ -3,12 +3,12 @@ c:\users\user\source\repos\ftgfw\x64\debug\ftgfw.idb
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\stb_image.obj
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\systemmanager.obj
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\system.obj
-c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\kinematicsystem.obj
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\scenemanager.obj
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\scene.obj
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\rendersystem.obj
+c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\kinematicsystem.obj
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\texture.obj
-c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\model.obj
+c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\model_c.obj
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\collisionsystem.obj
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\ftgfwprogram.obj
 c:\users\user\source\repos\ftgfw\ftgfw\x64\debug\controllersystem.obj
