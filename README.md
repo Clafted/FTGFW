@@ -13,5 +13,4 @@ Similarly, it hopes to allow for a more blank slate for developing a Windows app
 1. Extend the Scene class to make a new Scene
 2. Override the `Scene.setupScene()` method
 3. Override the `Scene.exitScene()` method
-## Note: Use the `componentManager` and `entityManager` Objects to
-      create and remove such from the Scene
+## Note: Use the `componentManager` and `entityManager` Objects to create and remove such from the Scene
