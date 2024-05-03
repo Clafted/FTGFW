@@ -1,4 +1,4 @@
-## A simple Graphs/Game Framework.
+# A simple Graphs/Game Framework.
 
 With an ECS foundation, FTGFW hopes to bring simplicity to a developer's introduction to Graphics and Video-Game programming.
 Similarly, it hopes to allow for a more blank slate for developing a Windows application.
@@ -13,4 +13,4 @@ Similarly, it hopes to allow for a more blank slate for developing a Windows app
 1. Extend the Scene class to make a new Scene
 2. Override the `Scene.setupScene()` method
 3. Override the `Scene.exitScene()` method
-## Note: Use the `componentManager` and `entityManager` Objects to create and remove such from the Scene
+4. Use the `componentManager` and `entityManager` Objects to create and remove such from the Scene
